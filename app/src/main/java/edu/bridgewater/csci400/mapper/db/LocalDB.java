@@ -6,7 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import edu.bridgewater.csci400.mapper.util.Edge;
+import edu.bridgewater.csci400.mapper.util.Node;
 
 public class LocalDB {
     private LocalDB() {} // make class uninstantiable
@@ -61,6 +64,27 @@ public class LocalDB {
         int node_2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
     }
 
+    public static Node getNode(int id) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getNode(int) can execute.");
+            return null;
+        }
+
+        // get the Node record
+        String query = Nodes_T.GET_NODE;
+        String[] data = {id + ""};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+        c.moveToFirst();
+
+        double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
+        double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
+        // TODO figure out boolean
+        boolean vis = true;
+
+        return new Node(id, new LatLng(lat, lon), vis);
+    }
 
     /**
      * Helper class that sets up the database/upgrades it

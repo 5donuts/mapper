@@ -1,9 +1,12 @@
 package edu.bridgewater.csci400.mapper.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import edu.bridgewater.csci400.mapper.util.Edge;
 
 public class LocalDB {
     private LocalDB() {} // make class uninstantiable
@@ -40,6 +43,22 @@ public class LocalDB {
     public static void closeDB() {
         db = null;
         dbHelper.close();
+    }
+    public static Edge getEdge(int id) {
+        if(db == null) {
+            Log.e(TAG, msg "DB must be opened be getEdge(int) can execute.");
+            return null;
+        }
+        //get Edge
+        String query = Edges_T.GET_EDGE;
+        String[] data = {id + ""};
+        Cursor c = db.rawQuery(query, data);
+        if(c == null || c.getCount() == 0)
+                return null;
+        c.moveToFirst();
+
+        int node_1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+        int node_2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
     }
 
 

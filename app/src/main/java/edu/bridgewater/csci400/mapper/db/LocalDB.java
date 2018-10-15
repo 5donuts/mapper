@@ -49,7 +49,7 @@ public class LocalDB {
     }
     public static Edge getEdge(int id) {
         if(db == null) {
-            Log.e(TAG, msg "DB must be opened be getEdge(int) can execute.");
+            Log.e(TAG, "DB must be opened be getEdge(int) can execute.");
             return null;
         }
         //get Edge
@@ -62,6 +62,13 @@ public class LocalDB {
 
         int node_1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
         int node_2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+
+        Node n1 = getNode(node_1);
+        Node n2 = getNode(node_2);
+
+        Edge e = new Edge(id, n1, n2);
+
+        return e;
     }
 
     public static Node getNode(int id) {

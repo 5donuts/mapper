@@ -1,5 +1,6 @@
 package edu.bridgewater.csci400.mapper.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -53,6 +54,31 @@ public class LocalDB {
     }
 
     /**
+     * Add an edge to the database
+     * @param e the {@code Edge} object representing the record to add. Must not be {@code null}.
+     * @return a code representing {@link #SUCCESS} or {@link #FAILURE}
+     */
+    public static int addEdge(Edge e) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before addEdge(Edge) can execute.");
+            return FAILURE;
+        }
+        if (e == null) {
+            Log.e(TAG, "Cannot add a null Edge record to the database.");
+            return FAILURE;
+        }
+
+        List<Node> nodes = e.getNodes();
+        ContentValues values = new ContentValues(3);
+        values.put(Edges_T._ID, e.getId());
+        values.put(Edges_T.NODE_1, nodes.get(0).getId());
+        values.put(Edges_T.NODE_2, nodes.get(1).getId());
+
+        long results = db.insert(Edges_T.TABLE_NAME, null, values);
+        return results == -1 ? FAILURE : SUCCESS;
+    }
+
+    /**
      * Get an edge from the database
      * @param id the id of the database record to fetch
      * @return an {@code Edge} object representing the database record
@@ -90,6 +116,31 @@ public class LocalDB {
         }
         // TODO finish this function
         return null;
+    }
+
+    /**
+     * Add a node to the database
+     * @param n the {@code Node} object representing the record to add. Must not be {@code null}.
+     * @return a code representing {@link #SUCCESS} or {@link #FAILURE}
+     */
+    public static int addNode(Node n) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before addNode(Node) can execute.");
+            return FAILURE;
+        }
+        if (n == null) {
+            Log.e(TAG, "Cannot add a null Node record to the database.");
+            return FAILURE;
+        }
+
+        ContentValues values = new ContentValues(4);
+        values.put(Nodes_T._ID, n.getId());
+        values.put(Nodes_T.LATITUDE, n.getPosition().latitude);
+        values.put(Nodes_T.LONGITUDE, n.getPosition().longitude);
+        values.put(Nodes_T.VISIBLE, n.isVisible());
+
+        long results = db.insert(Nodes_T.TABLE_NAME, null, values);
+        return results == -1 ? FAILURE : SUCCESS;
     }
 
     /**

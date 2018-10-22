@@ -8,6 +8,10 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.bridgewater.csci400.mapper.util.Destination;
 import edu.bridgewater.csci400.mapper.util.Edge;
 import edu.bridgewater.csci400.mapper.util.Node;
 
@@ -58,7 +62,8 @@ public class LocalDB {
             Log.e(TAG, "DB must be opened be getEdge(int) can execute.");
             return null;
         }
-        //get Edge
+
+        // get the Edge record
         String query = Edges_T.GET_EDGE;
         String[] data = {id + ""};
         Cursor c = db.rawQuery(query, data);
@@ -66,15 +71,16 @@ public class LocalDB {
                 return null;
         c.moveToFirst();
 
-        int node_1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
-        int node_2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+        // get the corresponding Node records
+        int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+        int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+        Node node1 = getNode(nodeId1);
+        Node node2 = getNode(nodeId2);
 
-        Node n1 = getNode(node_1);
-        Node n2 = getNode(node_2);
+        c.close();
 
-        Edge e = new Edge(id, n1, n2);
-
-        return e;
+        // build the Edge object
+        return new Edge(id, node1, node2);
     }
 
     /**
@@ -100,7 +106,41 @@ public class LocalDB {
         double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
         boolean vis = c.getInt(c.getColumnIndex(Nodes_T.VISIBLE)) != 0; // stored as INT in database
 
+        c.close();
+
+        // build the Node object
         return new Node(id, new LatLng(lat, lon), vis);
+    }
+
+    /**
+     * Get all visible nodes from the database
+     * @return a {@code List} of {@code Node} objects representing the database records
+     */
+    public static List<Node> getVisibleNodes() {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getVisibleNodes() can execute.");
+            return null;
+        }
+
+        // get all visible Node records
+        String query = Nodes_T.GET_VISIBLE_NODES;
+        String[] data = {};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+        List<Node> nodes = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the Node object
+            int id = c.getInt(c.getColumnIndex(Nodes_T._ID));
+            double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
+            double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
+            boolean vis = c.getInt(c.getColumnIndex(Nodes_T.VISIBLE)) != 0;
+            nodes.add(new Node(id, new LatLng(lat, lon), vis)); // add it to the list
+        }
+
+        c.close();
+
+        return nodes;
     }
 
     /**

@@ -203,6 +203,61 @@ public class LocalDB {
         return nodes;
     }
 
+    /**
+     * Add a destination record to the database
+     * @param d the {@code Destination} object representing the record in the database.
+     *          Must not be {@code null}.
+     * @return a code representing {@link #SUCCESS} or {@link #FAILURE}.
+     */
+    public static int addDestination(Destination d) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before addDestination(Destination) can execute.");
+            return FAILURE;
+        }
+        if (d == null) {
+            Log.e(TAG, "Cannot add a null Destination record to the database.");
+            return FAILURE;
+        }
+
+        ContentValues values = new ContentValues(2);
+        values.put(Destinations_T._ID, d.getId());
+        values.put(Destinations_T.NAME, d.getName());
+
+        long results = db.insert(Destinations_T.TABLE_NAME, null, values);
+        return results == -1 ? FAILURE : SUCCESS;
+    }
+
+    /**
+     * Add a record to the destination nodes table of the database
+     * @param d the {@code Destination} object representing the destination associated with the
+     *          given nodes. Must not be {@code null}.
+     * @return a code representing {@link #SUCCESS} or {@link #FAILURE}.
+     */
+    public static int addDestinationNodes(Destination d) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before addDestinationNodes(Destination) can execute.");
+            return FAILURE;
+        }
+        if (d == null) {
+            Log.e(TAG, "Cannot add a null Destination Nodes record to the database.");
+            return FAILURE;
+        }
+
+        List<Node> nodes = d.getNodes();
+        for (int i = 0, len = nodes.size(); i < len; i++) {
+            ContentValues values = new ContentValues(2);
+            values.put(Destination_Nodes_T.DEST_ID, d.getId());
+            values.put(Destination_Nodes_T.NODE, nodes.get(i).getId());
+
+            long results = db.insert(Destination_Nodes_T.TABLE_NAME, null, values);
+
+            if (results == FAILURE)
+                return FAILURE;
+        }
+
+        return SUCCESS;
+    }
+
     public static Destination getDestOfNode(Node n) {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getDestOfNode(Node) can execute.");

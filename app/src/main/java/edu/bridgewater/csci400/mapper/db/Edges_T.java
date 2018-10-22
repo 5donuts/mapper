@@ -10,7 +10,7 @@ public class Edges_T implements BaseColumns {
 
     //fields
     //automatically get the ID Edges from Basecolumns
-    public static final String NODE_1 = "Node_1";
+    public static final String NODE_1 = "NODE_1";
     public static final String NODE_2 = "NODE_2";
 
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" +

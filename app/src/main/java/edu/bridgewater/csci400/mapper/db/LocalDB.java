@@ -98,8 +98,7 @@ public class LocalDB {
 
         double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
         double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
-        // TODO figure out boolean
-        boolean vis = true;
+        boolean vis = c.getInt(c.getColumnIndex(Nodes_T.VISIBLE)) != 0; // stored as INT in database
 
         return new Node(id, new LatLng(lat, lon), vis);
     }

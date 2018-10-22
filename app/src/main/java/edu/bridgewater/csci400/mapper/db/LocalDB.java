@@ -47,6 +47,12 @@ public class LocalDB {
         db = null;
         dbHelper.close();
     }
+
+    /**
+     * Get an edge from the database
+     * @param id the id of the database record to fetch
+     * @return an {@code Edge} object representing the database record
+     */
     public static Edge getEdge(int id) {
         if(db == null) {
             Log.e(TAG, "DB must be opened be getEdge(int) can execute.");
@@ -71,6 +77,11 @@ public class LocalDB {
         return e;
     }
 
+    /**
+     * Get a node from the database
+     * @param id the id of the database record to fetch
+     * @return a {@code Node} object representing the database record
+     */
     public static Node getNode(int id) {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getNode(int) can execute.");

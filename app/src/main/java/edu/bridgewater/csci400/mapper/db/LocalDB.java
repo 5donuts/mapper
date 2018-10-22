@@ -83,6 +83,15 @@ public class LocalDB {
         return new Edge(id, node1, node2);
     }
 
+    public static Edge getEdgeWithNode(Node n) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getEdgeWithNode(Node) can execute.");
+            return null;
+        }
+        // TODO finish this function
+        return null;
+    }
+
     /**
      * Get a node from the database
      * @param id the id of the database record to fetch
@@ -141,6 +150,24 @@ public class LocalDB {
         c.close();
 
         return nodes;
+    }
+
+    public static Destination getDestOfNode(Node n) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getDestOfNode(Node) can execute.");
+            return null;
+        }
+        // TODO finish this function
+        return null;
+    }
+
+    public static List<Node> getNodesForDest(int id) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getNodesForDest(int) can execute.");
+            return null;
+        }
+        // TODO finish this function
+        return null;
     }
 
     /**

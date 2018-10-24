@@ -251,7 +251,7 @@ public class LocalDB {
 
             long results = db.insert(Destination_Nodes_T.TABLE_NAME, null, values);
 
-            if (results == FAILURE)
+            if (results == -1)
                 return FAILURE;
         }
 

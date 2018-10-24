@@ -114,8 +114,23 @@ public class LocalDB {
             Log.e(TAG, "DB must be opened before getEdgeWithNode(Node) can execute.");
             return null;
         }
-        // TODO finish this function
-        return null;
+        String query = Edges_T.GET_EDGE_WITH_NODE;
+        String[] data = {n.getId() + "", n.getId() + ""};
+        Cursor c = db.rawQuery(query, data);
+        if(c == null || c.getCount() == 0)
+            return null;
+        c.moveToFirst();
+
+        // get the corresponding Node records
+        int id = c.getInt(c.getColumnIndex(Edges_T._ID));
+        int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+        int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+        Node node1 = getNode(nodeId1);
+        Node node2 = getNode(nodeId2);
+
+        c.close();
+
+        return new Edge(id, node1, node2);
     }
 
     /**
@@ -262,9 +277,27 @@ public class LocalDB {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getDestOfNode(Node) can execute.");
             return null;
+        }if (db == null) {
+            Log.e(TAG, "DB must be opened before getNode(int) can execute.");
+            return null;
         }
-        // TODO finish this function
-        return null;
+
+        // get the Node record
+        String query = Destination_Nodes_T.GET_DEST_OF_NODE;
+        String[] data = {n.getId() + ""};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+        c.moveToFirst();
+
+        int id = c.getInt(c.getColumnIndex(Destinations_T._ID));
+        String name = c.getString(c.getColumnIndex(Destinations_T.NAME));
+        List<Node> nodes = getNodesForDest(id);
+
+        c.close();
+
+        // build the Node object
+        return new Destination(id, name, nodes);
     }
 
     public static List<Node> getNodesForDest(int id) {
@@ -272,9 +305,22 @@ public class LocalDB {
             Log.e(TAG, "DB must be opened before getNodesForDest(int) can execute.");
             return null;
         }
-        // TODO finish this function
-        return null;
+
+        String query = Destination_Nodes_T.GET_NODES_FOR_DEST;
+        String[] data = {id + ""};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+
+        List<Node> nodes = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the Node object
+            int node_id = c.getInt(c.getColumnIndex(Destination_Nodes_T.NODE));
+            nodes.add(getNode(node_id)); // add it to the list
+        }
+        return nodes;
     }
+
 
     /**
      * Helper class that sets up the database/upgrades it

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,9 +192,9 @@ public class LocalDB {
      * Get all visible nodes from the database
      * @return a {@code List} of {@code Node} objects representing the database records
      */
-    public static List<Node> getVisibleNodes() {
+    public static List<Node> getNodes() {
         if (db == null) {
-            Log.e(TAG, "DB must be opened before getVisibleNodes() can execute.");
+            Log.e(TAG, "DB must be opened before getNodes() can execute.");
             return null;
         }
 
@@ -320,7 +321,6 @@ public class LocalDB {
         }
         return nodes;
     }
-
 
     /**
      * Helper class that sets up the database/upgrades it

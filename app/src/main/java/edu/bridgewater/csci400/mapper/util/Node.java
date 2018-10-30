@@ -12,4 +12,16 @@ public class Node {
         this.position = position;
         this.visible = visible;
     }
+
+    public int getId() {
+        return _id;
+    }
+
+    public LatLng getPosition() {
+        return position;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
 }

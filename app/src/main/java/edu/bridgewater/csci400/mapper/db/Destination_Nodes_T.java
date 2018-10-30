@@ -14,7 +14,7 @@ public class Destination_Nodes_T implements BaseColumns {
 
     // SQL statements
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( " +
-            _ID + " INTEGER PRIMARY KEY ON UPDATE CASCADE," +
+            _ID + " INTEGER PRIMARY KEY AUTOINCREMENT ON UPDATE CASCADE," +
             DEST_ID + " INTEGER NOT NULL REFERENCES " + Destinations_T.TABLE_NAME + "(" + Destinations_T._ID + ")," +
             NODE + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + "))";
 

@@ -17,6 +17,8 @@ public class Destinations_T implements BaseColumns {
 
     public static final String DELETE_TABLE = " DELETE TABLE IF EXISTS " + TABLE_NAME;
 
+    public static final String GET_DESTINATIONS = " SELECT * FROM " + TABLE_NAME;
+
     public static final String GET_DESTINATION =" SELECT * FROM " + TABLE_NAME + " WHERE " +
             _ID + " =?";
 }

@@ -14,7 +14,7 @@ public class Graph {
 
     public Graph() {
         nodes= LocalDB.getNodes();
-        // TODO implement getEdges()
+        edges = LocalDB.getEdges();
         //TODO implement getDestinations()
     }
 

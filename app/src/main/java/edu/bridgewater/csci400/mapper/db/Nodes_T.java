@@ -25,4 +25,6 @@ public class Nodes_T implements BaseColumns {
     public static final String GET_NODE = "SELECT * FROM " + TABLE_NAME + " WHERE " + _ID + " = ?";
 
     public static final String GET_NODES = "SELECT * FROM " + TABLE_NAME;
+
+    public static final String GET_NODES_FOR_DEST = "SELECT * FROM " + TABLE_NAME + " WHERE " + DEST_ID + " = ?";
 }

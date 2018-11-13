@@ -271,37 +271,6 @@ public class LocalDB {
         return results == -1 ? FAILURE : SUCCESS;
     }
 
-    /**
-     * Add a record to the destination nodes table of the database
-     * @param d the {@code Destination} object representing the destination associated with the
-     *          given nodes. Must not be {@code null}.
-     * @return a code representing {@link #SUCCESS} or {@link #FAILURE}.
-     */
-    public static int addDestinationNodes(Destination d) {
-        if (db == null) {
-            Log.e(TAG, "DB must be opened before addDestinationNodes(Destination) can execute.");
-            return FAILURE;
-        }
-        if (d == null) {
-            Log.e(TAG, "Cannot add a null Destination Nodes record to the database.");
-            return FAILURE;
-        }
-
-        List<Node> nodes = d.getNodes();
-        for (int i = 0, len = nodes.size(); i < len; i++) {
-            ContentValues values = new ContentValues(2);
-            values.put(Destination_Nodes_T.DEST_ID, d.getId());
-            values.put(Destination_Nodes_T.NODE, nodes.get(i).getId());
-
-            long results = db.insert(Destination_Nodes_T.TABLE_NAME, null, values);
-
-            if (results == -1)
-                return FAILURE;
-        }
-
-        return SUCCESS;
-    }
-
     public static List<Destination> getDestinations() {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getNodes() can execute.");
@@ -340,8 +309,8 @@ public class LocalDB {
         }
 
         // get the Destination record
-        String query = Destination_Nodes_T.GET_DEST_OF_NODE;
-        String[] data = {n.getId() + ""};
+        String query = Destinations_T.GET_DESTINATION;
+        String[] data = {n.getDestId() + ""};
         Cursor c = db.rawQuery(query, data);
         if (c == null || c.getCount() == 0)
             return null;
@@ -365,7 +334,7 @@ public class LocalDB {
             return null;
         }
 
-        String query = Destination_Nodes_T.GET_NODES_FOR_DEST;
+        String query = Nodes_T.GET_NODES_FOR_DEST;
         String[] data = {id + ""};
         Cursor c = db.rawQuery(query, data);
         if (c == null || c.getCount() == 0)
@@ -374,8 +343,11 @@ public class LocalDB {
         List<Node> nodes = new ArrayList<>();
         while(c.moveToNext()) {
             // build the Node object
-            int node_id = c.getInt(c.getColumnIndex(Destination_Nodes_T.NODE));
-            nodes.add(getNode(node_id)); // add it to the list
+            int nodeId = c.getInt(c.getColumnIndex(Nodes_T._ID));
+            double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
+            double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
+            int destId = c.getInt(c.getColumnIndex(Nodes_T.DEST_ID));
+            nodes.add(new Node(nodeId, new LatLng(lat, lon), destId)); // add it to the list
         }
         return nodes;
     }

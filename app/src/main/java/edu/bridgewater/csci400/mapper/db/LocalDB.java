@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +110,34 @@ public class LocalDB {
         return new Edge(id, node1, node2);
     }
 
+    public static List<Edge> getEdges() {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getNodes() can execute.");
+            return null;
+        }
+
+        // get all visible Node records
+        String query = Edges_T.GET_EDGES;
+        String[] data = {};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+        List<Edge> edges = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the Node object
+            int id = c.getInt(c.getColumnIndex(Edges_T._ID));
+            int node_1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+            Node n1 = getNode(node_1);
+            int node_2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+            Node n2 = getNode(node_2);
+            edges.add(new Edge(id, n1 , n2)); // add it to the list
+        }
+
+        c.close();
+
+        return edges;
+    }
+
     public static Edge getEdgeWithNode(Node n) {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getEdgeWithNode(Node) can execute.");
@@ -191,9 +220,9 @@ public class LocalDB {
      * Get all visible nodes from the database
      * @return a {@code List} of {@code Node} objects representing the database records
      */
-    public static List<Node> getVisibleNodes() {
+    public static List<Node> getNodes() {
         if (db == null) {
-            Log.e(TAG, "DB must be opened before getVisibleNodes() can execute.");
+            Log.e(TAG, "DB must be opened before getNodes() can execute.");
             return null;
         }
 
@@ -273,6 +302,31 @@ public class LocalDB {
         return SUCCESS;
     }
 
+    public static List<Destination> getDestinations() {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getNodes() can execute.");
+            return null;
+        }
+
+        // get all visible Node records
+        String query = Destinations_T.GET_DESTINATIONS;
+        String[] data = {};
+        Cursor c = db.rawQuery(query, data);
+        if (c == null || c.getCount() == 0)
+            return null;
+        List<Destination> destinations = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the Node object
+            int id = c.getInt(c.getColumnIndex(Destinations_T._ID));
+            String destName = c.getString(c.getColumnIndex(Destinations_T.NAME));
+            destinations.add(new Destination(id, destName , null)); // TODO add it to the list
+        }
+
+        c.close();
+
+        return edges;
+    }
+
     public static Destination getDestOfNode(Node n) {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getDestOfNode(Node) can execute.");
@@ -320,7 +374,6 @@ public class LocalDB {
         }
         return nodes;
     }
-
 
     /**
      * Helper class that sets up the database/upgrades it

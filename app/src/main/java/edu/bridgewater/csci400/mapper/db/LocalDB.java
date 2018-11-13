@@ -181,7 +181,7 @@ public class LocalDB {
         values.put(Nodes_T._ID, n.getId());
         values.put(Nodes_T.LATITUDE, n.getPosition().latitude);
         values.put(Nodes_T.LONGITUDE, n.getPosition().longitude);
-        values.put(Nodes_T.VISIBLE, n.isVisible());
+        values.put(Nodes_T.DEST_ID, n.getDestination().getId());
 
         long results = db.insert(Nodes_T.TABLE_NAME, null, values);
         return results == -1 ? FAILURE : SUCCESS;
@@ -208,12 +208,12 @@ public class LocalDB {
 
         double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
         double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
-        boolean vis = c.getInt(c.getColumnIndex(Nodes_T.VISIBLE)) != 0; // stored as INT in database
+        int destId = c.getInt(c.getColumnIndex(Nodes_T.DEST_ID));
 
         c.close();
 
         // build the Node object
-        return new Node(id, new LatLng(lat, lon), vis);
+        return new Node(id, new LatLng(lat, lon), destId);
     }
 
     /**
@@ -238,8 +238,8 @@ public class LocalDB {
             int id = c.getInt(c.getColumnIndex(Nodes_T._ID));
             double lat = c.getDouble(c.getColumnIndex(Nodes_T.LATITUDE));
             double lon = c.getDouble(c.getColumnIndex(Nodes_T.LONGITUDE));
-            boolean vis = c.getInt(c.getColumnIndex(Nodes_T.VISIBLE)) != 0;
-            nodes.add(new Node(id, new LatLng(lat, lon), vis)); // add it to the list
+            int destId = c.getInt(c.getColumnIndex(Nodes_T.DEST_ID));
+            nodes.add(new Node(id, new LatLng(lat, lon), destId)); // add it to the list
         }
 
         c.close();
@@ -308,7 +308,7 @@ public class LocalDB {
             return null;
         }
 
-        // get all visible Node records
+        // get all Destination records
         String query = Destinations_T.GET_DESTINATIONS;
         String[] data = {};
         Cursor c = db.rawQuery(query, data);
@@ -316,15 +316,18 @@ public class LocalDB {
             return null;
         List<Destination> destinations = new ArrayList<>();
         while(c.moveToNext()) {
-            // build the Node object
+            // build the Destination object
             int id = c.getInt(c.getColumnIndex(Destinations_T._ID));
             String destName = c.getString(c.getColumnIndex(Destinations_T.NAME));
-            destinations.add(new Destination(id, destName , null)); // TODO add it to the list
+            double lat = c.getDouble(c.getColumnIndex(Destinations_T.LATITUDE));
+            double lon = c.getDouble(c.getColumnIndex(Destinations_T.LONGITUDE));
+            // TODO don't have a null nodes list here
+            destinations.add(new Destination(id, destName , null, new LatLng(lat, lon)));
         }
 
         c.close();
 
-        return edges;
+        return destinations;
     }
 
     public static Destination getDestOfNode(Node n) {
@@ -332,11 +335,11 @@ public class LocalDB {
             Log.e(TAG, "DB must be opened before getDestOfNode(Node) can execute.");
             return null;
         }if (db == null) {
-            Log.e(TAG, "DB must be opened before getNode(int) can execute.");
+            Log.e(TAG, "DB must be opened before getDestOfNode(int) can execute.");
             return null;
         }
 
-        // get the Node record
+        // get the Destination record
         String query = Destination_Nodes_T.GET_DEST_OF_NODE;
         String[] data = {n.getId() + ""};
         Cursor c = db.rawQuery(query, data);
@@ -346,12 +349,14 @@ public class LocalDB {
 
         int id = c.getInt(c.getColumnIndex(Destinations_T._ID));
         String name = c.getString(c.getColumnIndex(Destinations_T.NAME));
+        double lat = c.getDouble(c.getColumnIndex(Destinations_T.LATITUDE));
+        double lon = c.getDouble(c.getColumnIndex(Destinations_T.LONGITUDE));
         List<Node> nodes = getNodesForDest(id);
 
         c.close();
 
-        // build the Node object
-        return new Destination(id, name, nodes);
+        // build the Destination object
+        return new Destination(id, name, nodes, new LatLng(lat, lon));
     }
 
     public static List<Node> getNodesForDest(int id) {
@@ -386,10 +391,9 @@ public class LocalDB {
 
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
+            db.execSQL(Destinations_T.CREATE_TABLE);
             db.execSQL(Nodes_T.CREATE_TABLE);
             db.execSQL(Edges_T.CREATE_TABLE);
-            db.execSQL(Destinations_T.CREATE_TABLE);
-            db.execSQL(Destination_Nodes_T.CREATE_TABLE);
 
             // TODO add the routine for getting Daniel/Josh's JSON data into the DB here
         }
@@ -399,15 +403,13 @@ public class LocalDB {
             Log.w(TAG, "Upgrading application database from version " + oldVersion + " to " +
                     newVersion + ". This will destroy all old data.");
 
-            db.execSQL(Destination_Nodes_T.DELETE_TABLE);
-            db.execSQL(Destinations_T.DELETE_TABLE);
             db.execSQL(Edges_T.DELETE_TABLE);
             db.execSQL(Nodes_T.DELETE_TABLE);
+            db.execSQL(Destinations_T.DELETE_TABLE);
 
+            db.execSQL(Destinations_T.CREATE_TABLE);
             db.execSQL(Nodes_T.CREATE_TABLE);
             db.execSQL(Edges_T.CREATE_TABLE);
-            db.execSQL(Destinations_T.CREATE_TABLE);
-            db.execSQL(Destination_Nodes_T.CREATE_TABLE);
 
             // TODO add the JSON routine here too
         }

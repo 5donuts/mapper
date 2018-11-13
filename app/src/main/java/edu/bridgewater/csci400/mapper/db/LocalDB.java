@@ -181,7 +181,7 @@ public class LocalDB {
         values.put(Nodes_T._ID, n.getId());
         values.put(Nodes_T.LATITUDE, n.getPosition().latitude);
         values.put(Nodes_T.LONGITUDE, n.getPosition().longitude);
-        values.put(Nodes_T.DEST_ID, n.getDestination().getId());
+        values.put(Nodes_T.DEST_ID, n.getDestId());
 
         long results = db.insert(Nodes_T.TABLE_NAME, null, values);
         return results == -1 ? FAILURE : SUCCESS;
@@ -226,8 +226,8 @@ public class LocalDB {
             return null;
         }
 
-        // get all visible Node records
-        String query = Nodes_T.GET_VISIBLE_NODES;
+        // get all Node records
+        String query = Nodes_T.GET_NODES;
         String[] data = {};
         Cursor c = db.rawQuery(query, data);
         if (c == null || c.getCount() == 0)

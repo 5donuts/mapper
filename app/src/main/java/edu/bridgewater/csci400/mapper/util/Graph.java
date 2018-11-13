@@ -3,6 +3,7 @@ package edu.bridgewater.csci400.mapper.util;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.bridgewater.csci400.mapper.db.LocalDB;
@@ -15,7 +16,7 @@ public class Graph {
     public Graph() {
         nodes= LocalDB.getNodes();
         edges = LocalDB.getEdges();
-        //TODO implement getDestinations()
+        destinations = LocalDB.getDestinations();
     }
 
     public List<Polyline> getPaths(){
@@ -23,7 +24,11 @@ public class Graph {
     }
 
     public List<LatLng> getDestinationPins() {
-        return null;
+        List<LatLng> pinList = new ArrayList<>();
+        for(Destination d : destinations) {
+            pinList.add(d.getDestPin());
+        }
+        return pinList;
     }
 
     public List<Polyline> getShortestPath(Node start, Destination dest) {

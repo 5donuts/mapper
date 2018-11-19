@@ -4,1147 +4,1376 @@
             {
                 "id":1,
                 "latitude":38.37727777777778,
-                "longitude":-78.96525
+                "longitude":-78.96525,
+                "destination_id": -1
             },
             {
                 "id":2,
                 "latitude":38.37675,
-                "longitude":-78.96608333333333
+                "longitude":-78.96608333333333,
+                "destination_id": -1
             },
             {
                 "id":3,
                 "latitude":38.376805555555556,
-                "longitude":-78.96613888888889
+                "longitude":-78.96613888888889,
+                "destination_id": -1
             },
             {
                 "id":4,
                 "latitude":38.37730555555556,
-                "longitude":-78.96563888888889
+                "longitude":-78.96563888888889,
+                "destination_id": -1
             },
             {
                 "id":5,
                 "latitude":38.37755555555555,
-                "longitude":-78.966
+                "longitude":-78.966,
+                "destination_id": -1
             },
             {
                 "id":6,
                 "latitude":38.377694444444444,
-                "longitude":-78.96586111111111
+                "longitude":-78.96586111111111,
+                "destination_id": -1
             },
             {
                 "id":7,
                 "latitude":38.377805555555554,
-                "longitude":-78.96605555555556
+                "longitude":-78.96605555555556,
+                "destination_id": -1
             },
             {
                 "id":8,
                 "latitude":38.37766666666667,
-                "longitude":-78.96619444444444
+                "longitude":-78.96619444444444,
+                "destination_id": -1
             },
             {
                 "id":9,
                 "latitude":38.37727777777778,
-                "longitude":-78.9666111111111
+                "longitude":-78.9666111111111,
+                "destination_id": -1
             },
             {
                 "id":10,
                 "latitude":38.37722222222222,
-                "longitude":-78.96666666666667
+                "longitude":-78.96666666666667,
+                "destination_id": -1
             },
             {
                 "id":11,
                 "latitude":38.37711111111111,
-                "longitude":-78.9666388888889
+                "longitude":-78.9666388888889,
+                "destination_id": -1
             },
             {
                 "id":12,
                 "latitude":38.37705555555556,
-                "longitude":-78.96652777777778
+                "longitude":-78.96652777777778,
+                "destination_id": 258
             },
             {
                 "id":13,
                 "latitude":38.37683333333333,
-                "longitude":-78.96675
+                "longitude":-78.96675,
+                "destination_id": -1
             },
             {
                 "id":14,
                 "latitude":38.376583333333336,
-                "longitude":-78.96688888888889
+                "longitude":-78.96688888888889,
+                "destination_id": -1
             },
             {
                 "id":15,
                 "latitude":38.37636111111111,
-                "longitude":-78.96677777777778
+                "longitude":-78.96677777777778,
+                "destination_id": -1
             },
             {
                 "id":16,
                 "latitude":38.375527777777776,
-                "longitude":-78.96822222222222
+                "longitude":-78.96822222222222,
+                "destination_id": -1
             },
             {
                 "id":17,
                 "latitude":38.37688888888889,
-                "longitude":-78.96855555555555
+                "longitude":-78.96855555555555,
+                "destination_id": 251
             },
             {
                 "id":18,
                 "latitude":38.376694444444446,
-                "longitude":-78.96822222222222
+                "longitude":-78.96822222222222,
+                "destination_id": -1
             },
             {
                 "id":19,
                 "latitude":38.37672222222222,
-                "longitude":-78.96819444444445
+                "longitude":-78.96819444444445,
+                "destination_id": 252
             },
             {
                 "id":20,
                 "latitude":38.37661111111111,
-                "longitude":-78.96813888888889
+                "longitude":-78.96813888888889,
+                "destination_id": -1
             },
             {
                 "id":21,
                 "latitude":38.37638888888889,
-                "longitude":-78.96813888888889
+                "longitude":-78.96813888888889,
+                "destination_id": 257
             },
             {
                 "id":22,
                 "latitude":38.376194444444444,
-                "longitude":-78.96802777777778
+                "longitude":-78.96802777777778,
+                "destination_id": -1
             },
             {
                 "id":23,
                 "latitude":38.37616666666667,
-                "longitude":-78.96794444444444
+                "longitude":-78.96794444444444,
+                "destination_id": -1
             },
             {
                 "id":24,
                 "latitude":38.37611111111111,
-                "longitude":-78.968
+                "longitude":-78.968,
+                "destination_id": 256
             },
             {
                 "id":25,
                 "latitude":38.37616666666667,
-                "longitude":-78.96783333333333
+                "longitude":-78.96783333333333,
+                "destination_id": -1
             },
             {
                 "id":26,
                 "latitude":38.37613888888889,
-                "longitude":-78.96775
+                "longitude":-78.96775,
+                "destination_id": 255
             },
             {
                 "id":27,
                 "latitude":38.37627777777778,
-                "longitude":-78.96780555555556
+                "longitude":-78.96780555555556,
+                "destination_id": -1
             },
             {
                 "id":28,
                 "latitude":38.37638888888889,
-                "longitude":-78.96791666666667
+                "longitude":-78.96791666666667,
+                "destination_id": -1
             },
             {
                 "id":29,
                 "latitude":38.37638888888889,
-                "longitude":-78.9678611111111
+                "longitude":-78.9678611111111,
+                "destination_id": 254
             },
             {
                 "id":30,
                 "latitude":38.37647222222222,
-                "longitude":-78.96794444444444
+                "longitude":-78.96794444444444,
+                "destination_id": 253
             },
             {
                 "id":31,
                 "latitude":38.37652777777778,
-                "longitude":-78.96802777777778
+                "longitude":-78.96802777777778,
+                "destination_id": -1
             },
             {
                 "id":32,
                 "latitude":38.376555555555555,
-                "longitude":-78.96797222222222
+                "longitude":-78.96797222222222,
+                "destination_id": 253
             },
             {
                 "id":33,
                 "latitude":38.376777777777775,
-                "longitude":-78.96763888888889
+                "longitude":-78.96763888888889,
+                "destination_id": -1
             },
             {
                 "id":34,
                 "latitude":38.37688888888889,
-                "longitude":-78.96780555555556
+                "longitude":-78.96780555555556,
+                "destination_id": -1
             },
             {
                 "id":35,
                 "latitude":38.37705555555556,
-                "longitude":-78.96877777777777
+                "longitude":-78.96877777777777,
+                "destination_id": -1
             },
             {
                 "id":36,
                 "latitude":38.37708333333333,
-                "longitude":-78.96872222222223
+                "longitude":-78.96872222222223,
+                "destination_id": -1
             },
             {
                 "id":37,
                 "latitude":38.37755555555555,
-                "longitude":-78.96955555555556
+                "longitude":-78.96955555555556,
+                "destination_id": -1
             },
             {
                 "id":38,
                 "latitude":38.37761111111111,
-                "longitude":-78.96925
+                "longitude":-78.96925,
+                "destination_id": -1
             },
             {
                 "id":39,
                 "latitude":38.37763888888889,
-                "longitude":-78.96905555555556
+                "longitude":-78.96905555555556,
+                "destination_id": -1
             },
             {
                 "id":40,
                 "latitude":38.377722222222225,
-                "longitude":-78.96886111111111
+                "longitude":-78.96886111111111,
+                "destination_id": -1
             },
             {
                 "id":41,
                 "latitude":38.377805555555554,
-                "longitude":-78.96902777777778
+                "longitude":-78.96902777777778,
+                "destination_id": -1
             },
             {
                 "id":42,
                 "latitude":38.37797222222222,
-                "longitude":-78.96925
+                "longitude":-78.96925,
+                "destination_id": -1
             },
             {
                 "id":43,
                 "latitude":38.37822222222222,
-                "longitude":-78.96897222222222
+                "longitude":-78.96897222222222,
+                "destination_id": -1
             },
             {
                 "id":44,
                 "latitude":38.378305555555556,
-                "longitude":-78.96908333333333
+                "longitude":-78.96908333333333,
+                "destination_id": -1
             },
             {
                 "id":45,
                 "latitude":38.378166666666665,
-                "longitude":-78.96888888888888
+                "longitude":-78.96888888888888,
+                "destination_id": -1
             },
             {
                 "id":46,
                 "latitude":38.37822222222222,
-                "longitude":-78.96883333333334
+                "longitude":-78.96883333333334,
+                "destination_id": -1
             },
             {
                 "id":47,
                 "latitude":38.378083333333336,
-                "longitude":-78.96875
+                "longitude":-78.96875,
+                "destination_id": -1
             },
             {
                 "id":48,
                 "latitude":38.37797222222222,
-                "longitude":-78.96858333333333
+                "longitude":-78.96858333333333,
+                "destination_id": -1
             },
             {
                 "id":49,
                 "latitude":38.377944444444445,
-                "longitude":-78.96861111111112
+                "longitude":-78.96861111111112,
+                "destination_id": -1
             },
             {
                 "id":50,
                 "latitude":38.37822222222222,
-                "longitude":-78.96858333333333
+                "longitude":-78.96858333333333,
+                "destination_id": -1
             },
             {
                 "id":51,
                 "latitude":38.378277777777775,
-                "longitude":-78.96866666666666
+                "longitude":-78.96866666666666,
+                "destination_id": 247
             },
             {
                 "id":52,
                 "latitude":38.37844444444445,
-                "longitude":-78.9683888888889
+                "longitude":-78.9683888888889,
+                "destination_id": -1
             },
             {
                 "id":53,
                 "latitude":38.37811111111111,
-                "longitude":-78.9678611111111
+                "longitude":-78.9678611111111,
+                "destination_id": -1
             },
             {
                 "id":54,
                 "latitude":38.37825,
-                "longitude":-78.96772222222222
+                "longitude":-78.96772222222222,
+                "destination_id": -1
             },
             {
                 "id":55,
                 "latitude":38.37836111111111,
-                "longitude":-78.96761111111111
+                "longitude":-78.96761111111111,
+                "destination_id": -1
             },
             {
                 "id":56,
                 "latitude":38.378166666666665,
-                "longitude":-78.9675
+                "longitude":-78.9675,
+                "destination_id": -1
             },
             {
                 "id":57,
                 "latitude":38.37836111111111,
-                "longitude":-78.96730555555555
+                "longitude":-78.96730555555555,
+                "destination_id": -1
             },
             {
                 "id":58,
                 "latitude":38.37855555555556,
-                "longitude":-78.96755555555555
+                "longitude":-78.96755555555555,
+                "destination_id": -1
             },
             {
                 "id":59,
                 "latitude":38.3785,
-                "longitude":-78.96755555555555
+                "longitude":-78.96755555555555,
+                "destination_id": 246
             },
             {
                 "id":60,
                 "latitude":38.37872222222222,
-                "longitude":-78.9678611111111
+                "longitude":-78.9678611111111,
+                "destination_id": -1
             },
             {
                 "id":61,
                 "latitude":38.37833333333333,
-                "longitude":-78.96827777777777
+                "longitude":-78.96827777777777,
+                "destination_id": -1
             },
             {
                 "id":62,
                 "latitude":38.37838888888889,
-                "longitude":-78.96794444444444
+                "longitude":-78.96794444444444,
+                "destination_id": -1
             },
             {
                 "id":63,
                 "latitude":38.37888888888889,
-                "longitude":-78.96766666666667
+                "longitude":-78.96766666666667,
+                "destination_id": -1
             },
             {
                 "id":64,
                 "latitude":38.379,
-                "longitude":-78.96752777777778
+                "longitude":-78.96752777777778,
+                "destination_id": -1
             },
             {
                 "id":65,
                 "latitude":38.37902777777778,
-                "longitude":-78.96738888888889
+                "longitude":-78.96738888888889,
+                "destination_id": -1
             },
             {
                 "id":66,
                 "latitude":38.37905555555555,
-                "longitude":-78.96697222222222
+                "longitude":-78.96697222222222,
+                "destination_id": -1
             },
             {
                 "id":67,
                 "latitude":38.379194444444444,
-                "longitude":-78.96719444444444
+                "longitude":-78.96719444444444,
+                "destination_id": -1
             },
             {
                 "id":68,
                 "latitude":38.37938888888889,
-                "longitude":-78.967
+                "longitude":-78.967,
+                "destination_id": -1
             },
             {
                 "id":69,
                 "latitude":38.379555555555555,
-                "longitude":-78.96680555555555
+                "longitude":-78.96680555555555,
+                "destination_id": -1
             },
             {
                 "id":70,
                 "latitude":38.379305555555554,
-                "longitude":-78.96686111111111
+                "longitude":-78.96686111111111,
+                "destination_id": 243
             },
             {
                 "id":71,
                 "latitude":38.37961111111111,
-                "longitude":-78.96675
+                "longitude":-78.96675,
+                "destination_id": -1
             },
             {
                 "id":72,
                 "latitude":38.37947222222222,
-                "longitude":-78.96655555555556
+                "longitude":-78.96655555555556,
+                "destination_id": -1
             },
             {
                 "id":73,
                 "latitude":38.379416666666664,
-                "longitude":-78.9666388888889
+                "longitude":-78.9666388888889,
+                "destination_id": -1
             },
             {
                 "id":74,
                 "latitude":38.37952777777778,
-                "longitude":-78.96647222222222
+                "longitude":-78.96647222222222,
+                "destination_id": 240
             },
             {
                 "id":75,
                 "latitude":38.379305555555554,
-                "longitude":-78.96630555555555
+                "longitude":-78.96630555555555,
+                "destination_id": -1
             },
             {
                 "id":76,
                 "latitude":38.379555555555555,
-                "longitude":-78.96608333333333
+                "longitude":-78.96608333333333,
+                "destination_id": -1
             },
             {
                 "id":77,
                 "latitude":38.37972222222222,
-                "longitude":-78.96633333333334
+                "longitude":-78.96633333333334,
+                "destination_id": -1
             },
             {
                 "id":78,
                 "latitude":38.37961111111111,
-                "longitude":-78.96641666666666
+                "longitude":-78.96641666666666,
+                "destination_id": 241
             },
             {
                 "id":79,
                 "latitude":38.37983333333333,
-                "longitude":-78.9665
+                "longitude":-78.9665,
+                "destination_id": -1
             },
             {
                 "id":80,
                 "latitude":38.38,
-                "longitude":-78.96675
+                "longitude":-78.96675,
+                "destination_id": -1
             },
             {
                 "id":81,
                 "latitude":38.379888888888885,
-                "longitude":-78.96683333333333
+                "longitude":-78.96683333333333,
+                "destination_id": 242
             },
             {
                 "id":82,
                 "latitude":38.38016666666667,
-                "longitude":-78.96697222222222
+                "longitude":-78.96697222222222,
+                "destination_id": -1
             },
             {
                 "id":83,
                 "latitude":38.38005555555556,
-                "longitude":-78.96708333333333
+                "longitude":-78.96708333333333,
+                "destination_id": -1
             },
             {
                 "id":84,
                 "latitude":38.38030555555556,
-                "longitude":-78.96722222222222
+                "longitude":-78.96722222222222,
+                "destination_id": -1
             },
             {
                 "id":85,
                 "latitude":38.38022222222222,
-                "longitude":-78.96733333333333
+                "longitude":-78.96733333333333,
+                "destination_id": -1
             },
             {
                 "id":86,
                 "latitude":38.38041666666667,
-                "longitude":-78.96736111111112
+                "longitude":-78.96736111111112,
+                "destination_id": -1
             },
             {
                 "id":87,
                 "latitude":38.38052777777778,
-                "longitude":-78.96755555555555
+                "longitude":-78.96755555555555,
+                "destination_id": -1
             },
             {
                 "id":88,
                 "latitude":38.37975,
-                "longitude":-78.96697222222222
+                "longitude":-78.96697222222222,
+                "destination_id": -1
             },
             {
                 "id":89,
                 "latitude":38.379805555555556,
-                "longitude":-78.96688888888889
+                "longitude":-78.96688888888889,
+                "destination_id": 239
             },
             {
                 "id":90,
                 "latitude":38.37991666666667,
-                "longitude":-78.96719444444444
+                "longitude":-78.96719444444444,
+                "destination_id": -1
             },
             {
                 "id":91,
                 "latitude":38.37997222222222,
-                "longitude":-78.96713888888888
+                "longitude":-78.96713888888888,
+                "destination_id": 238
             },
             {
                 "id":92,
                 "latitude":38.38005555555556,
-                "longitude":-78.96744444444444
+                "longitude":-78.96744444444444,
+                "destination_id": -1
             },
             {
                 "id":93,
                 "latitude":38.38013888888889,
-                "longitude":-78.96738888888889
+                "longitude":-78.96738888888889,
+                "destination_id": 237
             },
             {
                 "id":94,
                 "latitude":38.38019444444444,
-                "longitude":-78.96761111111111
+                "longitude":-78.96761111111111,
+                "destination_id": -1
             },
             {
                 "id":95,
                 "latitude":38.38022222222222,
-                "longitude":-78.96772222222222
+                "longitude":-78.96772222222222,
+                "destination_id": -1
             },
             {
                 "id":96,
                 "latitude":38.38038888888889,
-                "longitude":-78.96794444444444
+                "longitude":-78.96794444444444,
+                "destination_id": -1
             },
             {
                 "id":97,
                 "latitude":38.380472222222224,
-                "longitude":-78.96811111111111
+                "longitude":-78.96811111111111,
+                "destination_id": -1
             },
             {
                 "id":98,
                 "latitude":38.38052777777778,
-                "longitude":-78.968
+                "longitude":-78.968,
+                "destination_id": -1
             },
             {
                 "id":99,
                 "latitude":38.38016666666667,
-                "longitude":-78.96816666666666
+                "longitude":-78.96816666666666,
+                "destination_id": -1
             },
             {
                 "id":100,
                 "latitude":38.37947222222222,
-                "longitude":-78.96825
+                "longitude":-78.96825,
+                "destination_id": -1
             },
             {
                 "id":101,
                 "latitude":38.37975,
-                "longitude":-78.96866666666666
+                "longitude":-78.96866666666666,
+                "destination_id": -1
             },
             {
                 "id":102,
                 "latitude":38.37961111111111,
-                "longitude":-78.96822222222222
+                "longitude":-78.96822222222222,
+                "destination_id": -1
             },
             {
                 "id":103,
                 "latitude":38.38008333333333,
-                "longitude":-78.96916666666667
+                "longitude":-78.96916666666667,
+                "destination_id": -1
             },
             {
                 "id":104,
                 "latitude":38.38052777777778,
-                "longitude":-78.96869444444444
+                "longitude":-78.96869444444444,
+                "destination_id": -1
             },
             {
                 "id":105,
                 "latitude":38.380722222222225,
-                "longitude":-78.96847222222222
+                "longitude":-78.96847222222222,
+                "destination_id": -1
             },
             {
                 "id":106,
                 "latitude":38.38061111111111,
-                "longitude":-78.96836111111111
+                "longitude":-78.96836111111111,
+                "destination_id": -1
             },
             {
                 "id":107,
                 "latitude":38.380694444444444,
-                "longitude":-78.96825
+                "longitude":-78.96825,
+                "destination_id": -1
             },
             {
                 "id":108,
                 "latitude":38.380583333333334,
-                "longitude":-78.96813888888889
+                "longitude":-78.96813888888889,
+                "destination_id": 236
             },
             {
                 "id":109,
                 "latitude":38.380833333333335,
-                "longitude":-78.96863888888889
+                "longitude":-78.96863888888889,
+                "destination_id": -1
             },
             {
                 "id":110,
                 "latitude":38.381166666666665,
-                "longitude":-78.96827777777777
+                "longitude":-78.96827777777777,
+                "destination_id": -1
             },
             {
                 "id":111,
                 "latitude":38.381055555555555,
-                "longitude":-78.96811111111111
+                "longitude":-78.96811111111111,
+                "destination_id": -1
             },
             {
                 "id":112,
                 "latitude":38.38055555555555,
-                "longitude":-78.96930555555555
+                "longitude":-78.96930555555555,
+                "destination_id": -1
             },
             {
                 "id":113,
                 "latitude":38.38061111111111,
-                "longitude":-78.96936111111111
+                "longitude":-78.96936111111111,
+                "destination_id": -1
             },
             {
                 "id":114,
                 "latitude":38.38077777777778,
-                "longitude":-78.96916666666667
+                "longitude":-78.96916666666667,
+                "destination_id": -1
             },
             {
                 "id":115,
                 "latitude":38.380916666666664,
-                "longitude":-78.96941666666666
+                "longitude":-78.96941666666666,
+                "destination_id": -1
             },
             {
                 "id":116,
                 "latitude":38.380833333333335,
-                "longitude":-78.96952777777778
+                "longitude":-78.96952777777778,
+                "destination_id": -1
             },
             {
                 "id":117,
                 "latitude":38.381083333333336,
-                "longitude":-78.96958333333333
+                "longitude":-78.96958333333333,
+                "destination_id": -1
             },
             {
                 "id":118,
                 "latitude":38.380916666666664,
-                "longitude":-78.96980555555555
+                "longitude":-78.96980555555555,
+                "destination_id": -1
             },
             {
                 "id":119,
                 "latitude":38.381,
-                "longitude":-78.96994444444445
+                "longitude":-78.96994444444445,
+                "destination_id": -1
             },
             {
                 "id":120,
                 "latitude":38.381083333333336,
-                "longitude":-78.96983333333333
+                "longitude":-78.96983333333333,
+                "destination_id": -1
             },
             {
                 "id":121,
                 "latitude":38.38088888888889,
-                "longitude":-78.97008333333333
+                "longitude":-78.97008333333333,
+                "destination_id": -1
             },
             {
                 "id":122,
                 "latitude":38.380694444444444,
-                "longitude":-78.96977777777778
+                "longitude":-78.96977777777778,
+                "destination_id": -1
             },
             {
                 "id":123,
                 "latitude":38.38066666666667,
-                "longitude":-78.96966666666667
+                "longitude":-78.96966666666667,
+                "destination_id": 234
             },
             {
                 "id":124,
                 "latitude":38.38033333333333,
-                "longitude":-78.96952777777778
+                "longitude":-78.96952777777778,
+                "destination_id": -1
             },
             {
                 "id":125,
                 "latitude":38.38022222222222,
-                "longitude":-78.96966666666667
+                "longitude":-78.96966666666667,
+                "destination_id": -1
             },
             {
                 "id":126,
                 "latitude":38.38,
-                "longitude":-78.96988888888889
+                "longitude":-78.96988888888889,
+                "destination_id": -1
             },
             {
                 "id":127,
                 "latitude":38.37991666666667,
-                "longitude":-78.9696388888889
+                "longitude":-78.9696388888889,
+                "destination_id": -1
             },
             {
                 "id":128,
                 "latitude":38.379888888888885,
-                "longitude":-78.9696388888889
+                "longitude":-78.9696388888889,
+                "destination_id": -1
             },
             {
                 "id":129,
                 "latitude":38.379777777777775,
-                "longitude":-78.9695
+                "longitude":-78.9695,
+                "destination_id": -1
             },
             {
                 "id":130,
                 "latitude":38.37994444444445,
-                "longitude":-78.96927777777778
+                "longitude":-78.96927777777778,
+                "destination_id": -1
             },
             {
                 "id":131,
                 "latitude":38.37994444444445,
-                "longitude":-78.96997222222222
+                "longitude":-78.96997222222222,
+                "destination_id": -1
             },
             {
                 "id":132,
                 "latitude":38.379888888888885,
-                "longitude":-78.96991666666666
+                "longitude":-78.96991666666666,
+                "destination_id": -1
             },
             {
                 "id":133,
                 "latitude":38.379805555555556,
-                "longitude":-78.97011111111111
+                "longitude":-78.97011111111111,
+                "destination_id": -1
             },
             {
                 "id":134,
                 "latitude":38.37986111111111,
-                "longitude":-78.97022222222222
+                "longitude":-78.97022222222222,
+                "destination_id": 262
             },
             {
                 "id":135,
                 "latitude":38.379666666666665,
-                "longitude":-78.97030555555556
+                "longitude":-78.97030555555556,
+                "destination_id": -1
             },
             {
                 "id":136,
                 "latitude":38.379666666666665,
-                "longitude":-78.97025
+                "longitude":-78.97025,
+                "destination_id": -1
             },
             {
                 "id":137,
                 "latitude":38.37963888888889,
-                "longitude":-78.97019444444445
+                "longitude":-78.97019444444445,
+                "destination_id": -1
             },
             {
                 "id":138,
                 "latitude":38.379555555555555,
-                "longitude":-78.97033333333333
+                "longitude":-78.97033333333333,
+                "destination_id": -1
             },
             {
                 "id":139,
                 "latitude":38.379333333333335,
-                "longitude":-78.97027777777778
+                "longitude":-78.97027777777778,
+                "destination_id": -1
             },
             {
                 "id":140,
                 "latitude":38.379305555555554,
-                "longitude":-78.96997222222222
+                "longitude":-78.96997222222222,
+                "destination_id": -1
             },
             {
                 "id":141,
                 "latitude":38.379194444444444,
-                "longitude":-78.97011111111111
+                "longitude":-78.97011111111111,
+                "destination_id": -1
             },
             {
                 "id":142,
                 "latitude":38.379444444444445,
-                "longitude":-78.97047222222223
+                "longitude":-78.97047222222223,
+                "destination_id": -1
             },
             {
                 "id":143,
                 "latitude":38.379666666666665,
-                "longitude":-78.9708611111111
+                "longitude":-78.9708611111111,
+                "destination_id": -1
             },
             {
                 "id":144,
                 "latitude":38.379777777777775,
-                "longitude":-78.97075
+                "longitude":-78.97075,
+                "destination_id": 232
             },
             {
                 "id":145,
                 "latitude":38.379888888888885,
-                "longitude":-78.97113888888889
+                "longitude":-78.97113888888889,
+                "destination_id": -1
             },
             {
                 "id":146,
                 "latitude":38.38022222222222,
-                "longitude":-78.97077777777778
+                "longitude":-78.97077777777778,
+                "destination_id": -1
             },
             {
                 "id":147,
                 "latitude":38.38044444444444,
-                "longitude":-78.97052777777778
+                "longitude":-78.97052777777778,
+                "destination_id": -1
             },
             {
                 "id":148,
                 "latitude":38.38027777777778,
-                "longitude":-78.97022222222222
+                "longitude":-78.97022222222222,
+                "destination_id": 233
             },
             {
                 "id":149,
                 "latitude":38.38025,
-                "longitude":-78.97027777777778
+                "longitude":-78.97027777777778,
+                "destination_id": -1
             },
             {
                 "id":150,
                 "latitude":38.38011111111111,
-                "longitude":-78.97
+                "longitude":-78.97,
+                "destination_id": -1
             },
             {
                 "id":151,
                 "latitude":38.38063888888889,
-                "longitude":-78.97027777777778
+                "longitude":-78.97027777777778,
+                "destination_id": -1
             },
             {
                 "id":152,
                 "latitude":38.38075,
-                "longitude":-78.97016666666667
+                "longitude":-78.97016666666667,
+                "destination_id": -1
             },
             {
                 "id":153,
                 "latitude":38.379444444444445,
-                "longitude":-78.97158333333333
+                "longitude":-78.97158333333333,
+                "destination_id": -1
             },
             {
                 "id":154,
                 "latitude":38.37911111111111,
-                "longitude":-78.97194444444445
+                "longitude":-78.97194444444445,
+                "destination_id": -1
             },
             {
                 "id":155,
                 "latitude":38.37902777777778,
-                "longitude":-78.97186111111111
+                "longitude":-78.97186111111111,
+                "destination_id": -1
             },
             {
                 "id":156,
                 "latitude":38.37888888888889,
-                "longitude":-78.97163888888889
+                "longitude":-78.97163888888889,
+                "destination_id": -1
             },
             {
                 "id":157,
                 "latitude":38.379194444444444,
-                "longitude":-78.97169444444444
+                "longitude":-78.97169444444444,
+                "destination_id": -1
             },
             {
                 "id":158,
                 "latitude":38.37905555555555,
-                "longitude":-78.97147222222222
+                "longitude":-78.97147222222222,
+                "destination_id": 259
             },
             {
                 "id":159,
                 "latitude":38.378416666666666,
-                "longitude":-78.97091666666667
+                "longitude":-78.97091666666667,
+                "destination_id": -1
             },
             {
                 "id":160,
                 "latitude":38.37838888888889,
-                "longitude":-78.9708611111111
+                "longitude":-78.9708611111111,
+                "destination_id": -1
             },
             {
                 "id":161,
                 "latitude":38.37833333333333,
-                "longitude":-78.97080555555556
+                "longitude":-78.97080555555556,
+                "destination_id": -1
             },
             {
                 "id":162,
                 "latitude":38.37866666666667,
-                "longitude":-78.97127777777777
+                "longitude":-78.97127777777777,
+                "destination_id": -1
             },
             {
                 "id":163,
                 "latitude":38.378083333333336,
-                "longitude":-78.97036111111112
+                "longitude":-78.97036111111112,
+                "destination_id": -1
             },
             {
                 "id":164,
                 "latitude":38.37797222222222,
-                "longitude":-78.97022222222222
+                "longitude":-78.97022222222222,
+                "destination_id": -1
             },
             {
                 "id":165,
                 "latitude":38.377916666666664,
-                "longitude":-78.97013888888888
+                "longitude":-78.97013888888888,
+                "destination_id": -1
             },
             {
                 "id":166,
                 "latitude":38.377805555555554,
-                "longitude":-78.96997222222222
+                "longitude":-78.96997222222222,
+                "destination_id": -1
             },
             {
                 "id":167,
                 "latitude":38.377805555555554,
-                "longitude":-78.96994444444445
+                "longitude":-78.96994444444445,
+                "destination_id": -1
             },
             {
                 "id":168,
                 "latitude":38.377833333333335,
-                "longitude":-78.96958333333333
+                "longitude":-78.96958333333333,
+                "destination_id": -1
             },
             {
                 "id":169,
                 "latitude":38.37786111111111,
-                "longitude":-78.96955555555556
+                "longitude":-78.96955555555556,
+                "destination_id": 250
             },
             {
                 "id":170,
                 "latitude":38.37777777777778,
-                "longitude":-78.96952777777778
+                "longitude":-78.96952777777778,
+                "destination_id": -1
             },
             {
                 "id":171,
                 "latitude":38.37777777777778,
-                "longitude":-78.96941666666666
+                "longitude":-78.96941666666666,
+                "destination_id": -1
             },
             {
                 "id":172,
                 "latitude":38.37752777777778,
-                "longitude":-78.96972222222222
+                "longitude":-78.96972222222222,
+                "destination_id": -1
             },
             {
                 "id":173,
                 "latitude":38.37763888888889,
-                "longitude":-78.96988888888889
+                "longitude":-78.96988888888889,
+                "destination_id": -1
             },
             {
                 "id":174,
                 "latitude":38.37744444444444,
-                "longitude":-78.97008333333333
+                "longitude":-78.97008333333333,
+                "destination_id": 260
             },
             {
                 "id":175,
                 "latitude":38.377722222222225,
-                "longitude":-78.97011111111111
+                "longitude":-78.97011111111111,
+                "destination_id": -1
             },
             {
                 "id":176,
                 "latitude":38.377583333333334,
-                "longitude":-78.97027777777778
+                "longitude":-78.97027777777778,
+                "destination_id": -1
             },
             {
                 "id":177,
                 "latitude":38.377833333333335,
-                "longitude":-78.97019444444445
+                "longitude":-78.97019444444445,
+                "destination_id": -1
             },
             {
                 "id":178,
                 "latitude":38.377722222222225,
-                "longitude":-78.9705
+                "longitude":-78.9705,
+                "destination_id": -1
             },
             {
                 "id":179,
                 "latitude":38.377722222222225,
-                "longitude":-78.97066666666667
+                "longitude":-78.97066666666667,
+                "destination_id": 261
             },
             {
                 "id":180,
                 "latitude":38.37797222222222,
-                "longitude":-78.97047222222223
+                "longitude":-78.97047222222223,
+                "destination_id": -1
             },
             {
                 "id":181,
                 "latitude":38.37811111111111,
-                "longitude":-78.97122222222222
+                "longitude":-78.97122222222222,
+                "destination_id": 230
             },
             {
                 "id":182,
                 "latitude":38.37833333333333,
-                "longitude":-78.97097222222222
+                "longitude":-78.97097222222222,
+                "destination_id": -1
             },
             {
                 "id":183,
                 "latitude":38.37825,
-                "longitude":-78.97136111111111
+                "longitude":-78.97136111111111,
+                "destination_id": -1
             },
             {
                 "id":184,
                 "latitude":38.378194444444446,
-                "longitude":-78.97144444444444
+                "longitude":-78.97144444444444,
+                "destination_id": -1
             },
             {
                 "id":185,
                 "latitude":38.37825,
-                "longitude":-78.97161111111112
+                "longitude":-78.97161111111112,
+                "destination_id": -1
             },
             {
                 "id":186,
                 "latitude":38.37852777777778,
-                "longitude":-78.97130555555556
+                "longitude":-78.97130555555556,
+                "destination_id": -1
             },
             {
                 "id":187,
                 "latitude":38.37838888888889,
-                "longitude":-78.97183333333334
+                "longitude":-78.97183333333334,
+                "destination_id": 231
             },
             {
                 "id":188,
                 "latitude":38.3785,
-                "longitude":-78.97197222222222
+                "longitude":-78.97197222222222,
+                "destination_id": -1
             },
             {
                 "id":189,
                 "latitude":38.37877777777778,
-                "longitude":-78.97166666666666
+                "longitude":-78.97166666666666,
+                "destination_id": -1
             },
             {
                 "id":190,
                 "latitude":38.37902777777778,
-                "longitude":-78.97205555555556
+                "longitude":-78.97205555555556,
+                "destination_id": -1
             },
             {
                 "id":191,
                 "latitude":38.37797222222222,
-                "longitude":-78.97008333333333
+                "longitude":-78.97008333333333,
+                "destination_id": -1
             },
             {
                 "id":192,
                 "latitude":38.37797222222222,
-                "longitude":-78.96980555555555
+                "longitude":-78.96980555555555,
+                "destination_id": -1
             },
             {
                 "id":193,
                 "latitude":38.37813888888889,
-                "longitude":-78.96966666666667
+                "longitude":-78.96966666666667,
+                "destination_id": -1
             },
             {
                 "id":194,
                 "latitude":38.378083333333336,
-                "longitude":-78.9695
+                "longitude":-78.9695,
+                "destination_id": -1
             },
             {
                 "id":195,
                 "latitude":38.37802777777778,
-                "longitude":-78.9696111111111
+                "longitude":-78.9696111111111,
+                "destination_id": -1
             },
             {
                 "id":196,
                 "latitude":38.378194444444446,
-                "longitude":-78.96975
+                "longitude":-78.96975,
+                "destination_id": -1
             },
             {
                 "id":197,
                 "latitude":38.37822222222222,
-                "longitude":-78.97008333333333
+                "longitude":-78.97008333333333,
+                "destination_id": -1
             },
             {
                 "id":198,
                 "latitude":38.37838888888889,
-                "longitude":-78.97002777777777
+                "longitude":-78.97002777777777,
+                "destination_id": -1
             },
             {
                 "id":199,
                 "latitude":38.37847222222222,
-                "longitude":-78.97019444444445
+                "longitude":-78.97019444444445,
+                "destination_id": -1
             },
             {
                 "id":200,
                 "latitude":38.3785,
-                "longitude":-78.97008333333333
+                "longitude":-78.97008333333333,
+                "destination_id": -1
             },
             {
                 "id":201,
                 "latitude":38.3785,
-                "longitude":-78.96994444444445
+                "longitude":-78.96994444444445,
+                "destination_id": -1
             },
             {
                 "id":202,
                 "latitude":38.37869444444444,
-                "longitude":-78.96975
+                "longitude":-78.96975,
+                "destination_id": -1
             },
             {
                 "id":203,
                 "latitude":38.37838888888889,
-                "longitude":-78.96927777777778
+                "longitude":-78.96927777777778,
+                "destination_id": 249
             },
             {
                 "id":204,
                 "latitude":38.37858333333333,
-                "longitude":-78.96916666666667
+                "longitude":-78.96916666666667,
+                "destination_id": 248
             },
             {
                 "id":205,
                 "latitude":38.37872222222222,
-                "longitude":-78.96936111111111
+                "longitude":-78.96936111111111,
+                "destination_id": -1
             },
             {
                 "id":206,
                 "latitude":38.37883333333333,
-                "longitude":-78.96955555555556
+                "longitude":-78.96955555555556,
+                "destination_id": -1
             },
             {
                 "id":207,
                 "latitude":38.37894444444444,
-                "longitude":-78.9695
+                "longitude":-78.9695,
+                "destination_id": -1
             },
             {
                 "id":208,
                 "latitude":38.37880555555556,
-                "longitude":-78.96925
+                "longitude":-78.96925,
+                "destination_id": -1
             },
             {
                 "id":209,
                 "latitude":38.37869444444444,
-                "longitude":-78.96902777777778
+                "longitude":-78.96902777777778,
+                "destination_id": -1
             },
             {
                 "id":210,
                 "latitude":38.37869444444444,
-                "longitude":-78.96894444444445
+                "longitude":-78.96894444444445,
+                "destination_id": -1
             },
             {
                 "id":211,
                 "latitude":38.37866666666667,
-                "longitude":-78.96888888888888
+                "longitude":-78.96888888888888,
+                "destination_id": -1
             },
             {
                 "id":212,
                 "latitude":38.37872222222222,
-                "longitude":-78.96883333333334
+                "longitude":-78.96883333333334,
+                "destination_id": -1
             },
             {
                 "id":213,
                 "latitude":38.37875,
-                "longitude":-78.96877777777777
+                "longitude":-78.96877777777777,
+                "destination_id": -1
             },
             {
                 "id":214,
                 "latitude":38.379,
-                "longitude":-78.96886111111111
+                "longitude":-78.96886111111111,
+                "destination_id": -1
             },
             {
                 "id":215,
                 "latitude":38.37902777777778,
-                "longitude":-78.96894444444445
+                "longitude":-78.96894444444445,
+                "destination_id": 244
             },
             {
                 "id":216,
                 "latitude":38.37911111111111,
-                "longitude":-78.96877777777777
+                "longitude":-78.96877777777777,
+                "destination_id": -1
             },
             {
                 "id":217,
                 "latitude":38.37888888888889,
-                "longitude":-78.9685
+                "longitude":-78.9685,
+                "destination_id": -1
             },
             {
                 "id":218,
                 "latitude":38.37863888888889,
-                "longitude":-78.96872222222223
+                "longitude":-78.96872222222223,
+                "destination_id": -1
             },
             {
                 "id":219,
                 "latitude":38.37852777777778,
-                "longitude":-78.96852777777778
+                "longitude":-78.96852777777778,
+                "destination_id": -1
             },
             {
                 "id":220,
                 "latitude":38.37869444444444,
-                "longitude":-78.96836111111111
+                "longitude":-78.96836111111111,
+                "destination_id": -1
             },
             {
                 "id":221,
                 "latitude":38.378861111111114,
-                "longitude":-78.96805555555555
+                "longitude":-78.96805555555555,
+                "destination_id": -1
             },
             {
                 "id":222,
                 "latitude":38.37902777777778,
-                "longitude":-78.96833333333333
+                "longitude":-78.96833333333333,
+                "destination_id": 245
             },
             {
                 "id":223,
                 "latitude":38.37961111111111,
-                "longitude":-78.96875
+                "longitude":-78.96875,
+                "destination_id": -1
             },
             {
                 "id":224,
                 "latitude":38.379416666666664,
-                "longitude":-78.969
+                "longitude":-78.969,
+                "destination_id": -1
             },
             {
                 "id":225,
                 "latitude":38.379194444444444,
-                "longitude":-78.96922222222223
+                "longitude":-78.96922222222223,
+                "destination_id": -1
             },
             {
                 "id":226,
                 "latitude":38.37913888888889,
-                "longitude":-78.96908333333333
+                "longitude":-78.96908333333333,
+                "destination_id": -1
             },
             {
                 "id":227,
                 "latitude":38.379555555555555,
-                "longitude":-78.96972222222222
+                "longitude":-78.96972222222222,
+                "destination_id": -1
             },
             {
                 "id":228,
                 "latitude":38.37963888888889,
-                "longitude":-78.96986111111111
+                "longitude":-78.96986111111111,
+                "destination_id": 235
             },
             {
                 "id":229,
                 "latitude":38.37902777777778,
-                "longitude":-78.97025
+                "longitude":-78.97025,
+                "destination_id": -1
             }
         ],
         "edges":[
@@ -2299,6 +2528,206 @@
             {
                 "node1":216,
                 "node2":217
+            }
+        ],
+        "destinations":[
+            {
+                "id": 230,
+                "name": "Memorial Hall",
+                "latitude": 38.378012,
+                "longitude": -78.971320
+            },
+            {
+                "id": 231,
+                "name": "Flory Hall",
+                "latitude": 38.378299,
+                "longitude": -78.971823
+            },
+            {
+                "id": 232,
+                "name": "Wright Hall",
+                "latitude": 38.379885,
+                "longitude": -78.970634
+            },
+            {
+                "id": 233,
+                "name": "Heritage Hall",
+                "latitude": 38.380197,
+                "longitude": -78.970305
+            },
+            {
+                "id": 234,
+                "name": "Geisert Hall",
+                "latitude": 38.380768,
+                "longitude": -78.969589
+            },
+            {
+                "id": 235,
+                "name": "Bowman Hall",
+                "latitude": 38.379727,
+                "longitude": -78.969973
+            },
+            {
+                "id": 236,
+                "name": "McKinney",
+                "latitude": 38.380762,
+                "longitude": -78.967974
+            },
+            {
+                "id": 237,
+                "name": "Wampler Tower A",
+                "latitude": 38.380245,
+                "longitude": -78.967410
+            },
+            {
+                "id": 238,
+                "name": "Wampler Tower B",
+                "latitude": 38.380107,
+                "longitude": -78.967200
+            },
+            {
+                "id": 239,
+                "name": "Wampler Tower C",
+                "latitude": 38.379943,
+                "longitude": -78.966961
+            },
+            {
+                "id": 240,
+                "name": "Wampler Tower D",
+                "latitude": 38.379825,
+                "longitude": -78.966725
+            },
+            {
+                "id": 241,
+                "name": "Wampler Tower E",
+                "latitude": 38.379649,
+                "longitude": -78.966515
+            },
+            {
+                "id": 242,
+                "name": "Wampler Tower F",
+                "latitude": 38.379522,
+                "longitude": -78.966324
+            },
+            {
+                "id": 243,
+                "name": "Wakeman Hall",
+                "latitude": 38.379243,
+                "longitude": -78.966778
+            },
+            {
+                "id": 244,
+                "name": "Blue Ridge Hall",
+                "latitude": 38.379075,
+                "longitude": -78.968991
+            },
+            {
+                "id": 245,
+                "name": "Daleville Hall",
+                "latitude": 38.378950,
+                "longitude": -78.968367
+            },
+            {
+                "id": 246,
+                "name": "Dillon Hall",
+                "latitude": 38.378442,
+                "longitude": -78.967587
+            },
+            {
+                "id": 247,
+                "name": "Moomaw Hall",
+                "latitude": 38.378308,
+                "longitude": -78.968729
+            },
+            {
+                "id": 248,
+                "name": "Rebecca Hall",
+                "latitude": 38.378499,
+                "longitude": -78.969032
+            },
+            {
+                "id": 249,
+                "name": "Kline Campus Center",
+                "latitude": 38.378287,
+                "longitude": -78.969432
+            },
+            {
+                "id": 250,
+                "name": "Cole Hall",
+                "latitude": 38.377861,
+                "longitude": -78.969356
+            },
+            {
+                "id": 251,
+                "name": "Stone Village 1",
+                "latitude": 38.376957,
+                "longitude": -78.968345
+            },
+            {
+                "id": 252,
+                "name": "Stone Village 2",
+                "latitude": 38.376776,
+                "longitude": -78.968119
+            },
+            {
+                "id": 253,
+                "name": "Stone Village 3",
+                "latitude": 38.376648,
+                "longitude": -78.967903
+            },
+            {
+                "id": 254,
+                "name": "Stone Village 4",
+                "latitude": 38.376420,
+                "longitude": -78.967752
+            },
+            {
+                "id": 255,
+                "name": "Stone Village 5",
+                "latitude": 38.376132,
+                "longitude": -78.967654
+            },
+            {
+                "id": 256,
+                "name": "Stone Village 6",
+                "latitude": 38.376082,
+                "longitude": -78.968115
+            },
+            {
+                "id": 257,
+                "name": "Stone Village 7",
+                "latitude": 38.376366,
+                "longitude": -78.968248
+            },
+            {
+                "id": 258,
+                "name": "Funkhouser Center",
+                "latitude": 38.377180,
+                "longitude": -78.966137
+            },
+            {
+                "id": 259,
+                "name": "Carter",
+                "latitude": 38.379204,
+                "longitude": -78.971494
+            },
+            {
+                "id": 260,
+                "name": "Nininger",
+                "latitude": 38.377431,
+                "longitude": -78.970120
+            },
+            {
+                "id": 261,
+                "name": "Yount",
+                "latitude": 38.377639,
+                "longitude": -78.970760
+            },
+            {
+                "id": 262,
+                "name": "Heritage/Wright Link",
+                "latitude": 38.379894,
+                "longitude": -78.970241
             }
         ]
     }

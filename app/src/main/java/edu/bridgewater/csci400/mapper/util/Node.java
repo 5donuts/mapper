@@ -5,12 +5,12 @@ import com.google.android.gms.maps.model.LatLng;
 public class Node {
     private int _id;
     private LatLng position;
-    private boolean visible;
+    private int destId;
 
-    public Node(int id, LatLng position, boolean visible) {
+    public Node(int id, LatLng position, int destId) {
         _id = id;
         this.position = position;
-        this.visible = visible;
+        this.destId = destId;
     }
 
     public int getId() {
@@ -21,7 +21,7 @@ public class Node {
         return position;
     }
 
-    public boolean isVisible() {
-        return visible;
+    public int getDestId() {
+        return destId;
     }
 }

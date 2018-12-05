@@ -1,5 +1,7 @@
 package edu.bridgewater.csci400.mapper.util;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,5 +25,13 @@ public class Edge {
         l.add(node_1);
         l.add(node_2);
         return l;
+    }
+
+    public double getDistance() {
+        LatLng pos1 = node_1.getPosition();
+        LatLng pos2 = node_2.getPosition();
+
+        return Math.sqrt(Math.pow(pos2.latitude - pos1.latitude, 2)
+                + Math.pow(pos2.longitude - pos1.longitude, 2));
     }
 }

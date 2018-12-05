@@ -24,4 +24,12 @@ public class Node {
     public int getDestId() {
         return destId;
     }
+
+    public double distanceTo(Node n) {
+        LatLng pos1 = position;
+        LatLng pos2 = n.getPosition();
+
+        return Math.sqrt(Math.pow(pos2.latitude - pos1.latitude, 2)
+                + Math.pow(pos2.longitude - pos1.longitude, 2));
+    }
 }

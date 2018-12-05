@@ -28,10 +28,6 @@ public class Edge {
     }
 
     public double getDistance() {
-        LatLng pos1 = node_1.getPosition();
-        LatLng pos2 = node_2.getPosition();
-
-        return Math.sqrt(Math.pow(pos2.latitude - pos1.latitude, 2)
-                + Math.pow(pos2.longitude - pos1.longitude, 2));
+        return node_1.distanceTo(node_2);
     }
 }

@@ -1,5 +1,6 @@
 package edu.bridgewater.csci400.mapper;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -8,7 +9,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import edu.bridgewater.csci400.mapper.util.Graph;
+
 import com.google.gson.*;
 import android.util.Log;
 import java.io.*;
@@ -16,7 +23,11 @@ import com.google.android.gms.maps.model.*;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+
     private GoogleMap mMap;
+    private MapsActivity mListener;
+    private Graph g;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +37,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        g = new Graph();
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Bridgewater College.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -96,6 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-        //--------------------//
     }
 }
+
+

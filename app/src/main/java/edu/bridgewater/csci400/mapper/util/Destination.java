@@ -5,6 +5,8 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.bridgewater.csci400.mapper.db.LocalDB;
+
 public class Destination {
     private int _id;
     private String name;
@@ -26,5 +28,9 @@ public class Destination {
 
     public LatLng getDestPin() {
         return destPin;
+    }
+
+    public List<Node> getNodes() {
+        return LocalDB.getNodesForDest(_id);
     }
 }

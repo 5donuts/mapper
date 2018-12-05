@@ -9,11 +9,11 @@ public class Edges_T implements BaseColumns {
 
     // fields
     // automatically get the ID Edges from Basecolumns
-    public static final String NODE_1 = "NODE_1";
-    public static final String NODE_2 = "NODE_2";
+    public static final String NODE_1 = "Node_1";
+    public static final String NODE_2 = "Node_2";
 
     // SQL statements
-    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" +
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
             TABLE_NAME + "(" + _ID + " INTEGER PRIMARY KEY ON UPDATE CASCADE," +
             NODE_1 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + ")," +
             NODE_2 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + "))";

@@ -9,9 +9,9 @@ public class Nodes_T implements BaseColumns {
 
     // fields
     // automatically get the _ID field from BaseColumns
-    public static final String LATITUDE = "latitude";
-    public static final String LONGITUDE = "longitude";
-    public static final String DEST_ID = "dest_id";
+    public static final String LATITUDE = "Latitude";
+    public static final String LONGITUDE = "Longitude";
+    public static final String DEST_ID = "Dest_id";
 
     // SQL statements
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( " +

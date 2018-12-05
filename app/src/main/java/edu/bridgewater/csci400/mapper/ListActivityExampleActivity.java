@@ -17,7 +17,7 @@ public class ListActivityExampleActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the activity layout xml file.
-        setContentView(layout.activity_list_activity_example);
+        setContentView(R.layout.activity_list_activity_example);
 
         // Create a list data which will be displayed in inner ListView.
         List<String> listData = new ArrayList<String>();

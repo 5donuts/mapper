@@ -16,9 +16,9 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import edu.bridgewater.csci400.mapper.util.Graph;
 
-import static sun.text.bidi.BidiBase.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
 
     private GoogleMap mMap;
     private MapsActivity mListener;

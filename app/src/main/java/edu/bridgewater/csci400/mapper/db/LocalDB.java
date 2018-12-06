@@ -143,9 +143,9 @@ public class LocalDB {
         return edges;
     }
 
-    public static Edge getEdgeWithNode(Node n) {
+    public static List<Edge> getEdgesWithNode(Node n) {
         if (db == null) {
-            Log.e(TAG, "DB must be opened before getEdgeWithNode(Node) can execute.");
+            Log.e(TAG, "DB must be opened before getEdgesWithNode(Node) can execute.");
             return null;
         }
         String query = Edges_T.GET_EDGE_WITH_NODE;
@@ -153,18 +153,23 @@ public class LocalDB {
         Cursor c = db.rawQuery(query, data);
         if(c == null || c.getCount() == 0)
             return null;
-        c.moveToFirst();
 
-        // get the corresponding Node records
-        int id = c.getInt(c.getColumnIndex(Edges_T._ID));
-        int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
-        int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
-        Node node1 = getNode(nodeId1);
-        Node node2 = getNode(nodeId2);
+        List<Edge> edges = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the corresponding Node objects
+            int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+            int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+            Node node1 = getNode(nodeId1);
+            Node node2 = getNode(nodeId2);
+
+            // build the Edge object
+            int id = c.getInt(c.getColumnIndex(Edges_T._ID));
+            edges.add(new Edge(id, node1, node2));
+        }
 
         c.close();
 
-        return new Edge(id, node1, node2);
+        return edges;
     }
 
     /**

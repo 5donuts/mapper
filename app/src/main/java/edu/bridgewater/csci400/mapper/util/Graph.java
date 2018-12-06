@@ -48,6 +48,18 @@ public class Graph {
         return pinList;
     }
 
+    public List<Destination> getDestinations() {
+        return destinations;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
     public List<Polyline> getShortestPath(Node start, Destination dest) {
         return null;
     }

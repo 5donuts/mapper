@@ -1,6 +1,8 @@
 package edu.bridgewater.csci400.mapper.util;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,7 +22,8 @@ public class Graph {
     private List<Edge> edges;
     private List<Destination> destinations;
 
-    public Graph() {
+    public Graph(Context context) {
+        LocalDB.openDB(context);
         nodes= LocalDB.getNodes();
         edges = LocalDB.getEdges();
         destinations = LocalDB.getDestinations();
@@ -60,7 +63,7 @@ public class Graph {
         return nodes;
     }
 
-    public List<Polyline> getShortestPath(Node start, Destination dest) {
+    public List<Polyline> getShortestPath(Node start, Node dest) {
         return null;
     }
 

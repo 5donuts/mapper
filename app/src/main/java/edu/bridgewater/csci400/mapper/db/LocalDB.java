@@ -276,6 +276,8 @@ public class LocalDB {
         ContentValues values = new ContentValues(2);
         values.put(Destinations_T._ID, d.getId());
         values.put(Destinations_T.NAME, d.getName());
+        values.put(Destinations_T.LATITUDE, d.getDestPin().latitude);
+        values.put(Destinations_T.LONGITUDE, d.getDestPin().longitude);
 
         long results = db.insert(Destinations_T.TABLE_NAME, null, values);
         return results == -1 ? FAILURE : SUCCESS;
@@ -425,26 +427,27 @@ public class LocalDB {
         }
 
         @Override
-        public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            db.execSQL(Destinations_T.CREATE_TABLE);
-            db.execSQL(Nodes_T.CREATE_TABLE);
-            db.execSQL(Edges_T.CREATE_TABLE);
-
+        public void onCreate(SQLiteDatabase database) {
+            database.execSQL(Destinations_T.CREATE_TABLE);
+            database.execSQL(Nodes_T.CREATE_TABLE);
+            database.execSQL(Edges_T.CREATE_TABLE);
+            db = database;
             readFromJson(c);
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading application database from version " + oldVersion + " to " +
                     newVersion + ". This will destroy all old data.");
 
-            db.execSQL(Edges_T.DELETE_TABLE);
-            db.execSQL(Nodes_T.DELETE_TABLE);
-            db.execSQL(Destinations_T.DELETE_TABLE);
+            database.execSQL(Edges_T.DELETE_TABLE);
+            database.execSQL(Nodes_T.DELETE_TABLE);
+            database.execSQL(Destinations_T.DELETE_TABLE);
 
-            db.execSQL(Destinations_T.CREATE_TABLE);
-            db.execSQL(Nodes_T.CREATE_TABLE);
-            db.execSQL(Edges_T.CREATE_TABLE);
+            database.execSQL(Destinations_T.CREATE_TABLE);
+            database.execSQL(Nodes_T.CREATE_TABLE);
+            database.execSQL(Edges_T.CREATE_TABLE);
+            db = database;
 
             readFromJson(c);
         }

@@ -1,7 +1,9 @@
 package edu.bridgewater.csci400.mapper;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +20,8 @@ import edu.bridgewater.csci400.mapper.util.Graph;
 
 import com.google.gson.*;
 import android.util.Log;
+import android.view.View;
+
 import java.io.*;
 import com.google.android.gms.maps.model.*;
 
@@ -40,7 +44,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         g = new Graph();
     }
 
-
+    public void viewList(View view) {
+        Intent intent = new Intent(this, ListActivityExampleActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -49,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Bridgewater College and move the camera
         LatLng bridgewaterCollege = new LatLng(38.3787678, -78.9705121);
         mMap.addMarker(new MarkerOptions().position(bridgewaterCollege).title("Bridgewater College"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bridgewaterCollege, 20)); // zoom level of 20
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bridgewaterCollege, 16)); // zoom level of 20
 
         //Temporary demo code//
         BufferedReader reader = null;

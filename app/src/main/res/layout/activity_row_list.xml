@@ -4,21 +4,13 @@
     android:layout_height="match_parent">
 
 </LinearLayout> -->
-
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/listRowTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@android:color/holo_red_light"
-        android:textStyle="bold"
-        android:background="@android:color/holo_blue_bright"
-        android:minHeight="50dp" />
-
-</LinearLayout>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listRowTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20dp"
+    android:textColor="@android:color/holo_red_light"
+    android:textStyle="bold"
+    android:background="@android:color/holo_blue_bright"
+    android:minHeight="50dp" />

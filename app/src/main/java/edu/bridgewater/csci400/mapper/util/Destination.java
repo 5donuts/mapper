@@ -5,16 +5,16 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.bridgewater.csci400.mapper.db.LocalDB;
+
 public class Destination {
     private int _id;
     private String name;
     private LatLng destPin;
-    private List<Node> nodes;
 
-    public Destination(int id, String name, List<Node> nodes, LatLng destPin) {
+    public Destination(int id, String name, LatLng destPin) {
         this._id = id;
         this.name = name;
-        this.nodes = nodes == null ? new ArrayList<Node>() : nodes;
         this.destPin = destPin;
     }
 
@@ -26,15 +26,11 @@ public class Destination {
         return name;
     }
 
-    public List<Node> getNodes() {
-        return nodes;
-    }
-
     public LatLng getDestPin() {
         return destPin;
     }
 
-    public void addNode(Node n) {
-        nodes.add(n);
+    public List<Node> getNodes() {
+        return LocalDB.getNodesForDest(_id);
     }
 }

@@ -8,8 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Polyline;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,9 +143,9 @@ public class LocalDB {
         return edges;
     }
 
-    public static Edge getEdgeWithNode(Node n) {
+    public static List<Edge> getEdgesWithNode(Node n) {
         if (db == null) {
-            Log.e(TAG, "DB must be opened before getEdgeWithNode(Node) can execute.");
+            Log.e(TAG, "DB must be opened before getEdgesWithNode(Node) can execute.");
             return null;
         }
         String query = Edges_T.GET_EDGE_WITH_NODE;
@@ -148,18 +153,23 @@ public class LocalDB {
         Cursor c = db.rawQuery(query, data);
         if(c == null || c.getCount() == 0)
             return null;
-        c.moveToFirst();
 
-        // get the corresponding Node records
-        int id = c.getInt(c.getColumnIndex(Edges_T._ID));
-        int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
-        int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
-        Node node1 = getNode(nodeId1);
-        Node node2 = getNode(nodeId2);
+        List<Edge> edges = new ArrayList<>();
+        while(c.moveToNext()) {
+            // build the corresponding Node objects
+            int nodeId1 = c.getInt(c.getColumnIndex(Edges_T.NODE_1));
+            int nodeId2 = c.getInt(c.getColumnIndex(Edges_T.NODE_2));
+            Node node1 = getNode(nodeId1);
+            Node node2 = getNode(nodeId2);
+
+            // build the Edge object
+            int id = c.getInt(c.getColumnIndex(Edges_T._ID));
+            edges.add(new Edge(id, node1, node2));
+        }
 
         c.close();
 
-        return new Edge(id, node1, node2);
+        return edges;
     }
 
     /**
@@ -291,7 +301,7 @@ public class LocalDB {
             double lat = c.getDouble(c.getColumnIndex(Destinations_T.LATITUDE));
             double lon = c.getDouble(c.getColumnIndex(Destinations_T.LONGITUDE));
             // TODO don't have a null nodes list here
-            destinations.add(new Destination(id, destName , null, new LatLng(lat, lon)));
+            destinations.add(new Destination(id, destName, new LatLng(lat, lon)));
         }
 
         c.close();
@@ -320,12 +330,12 @@ public class LocalDB {
         String name = c.getString(c.getColumnIndex(Destinations_T.NAME));
         double lat = c.getDouble(c.getColumnIndex(Destinations_T.LATITUDE));
         double lon = c.getDouble(c.getColumnIndex(Destinations_T.LONGITUDE));
-        List<Node> nodes = getNodesForDest(id);
+//        List<Node> nodes = getNodesForDest(id); // TODO revisit this
 
         c.close();
 
         // build the Destination object
-        return new Destination(id, name, nodes, new LatLng(lat, lon));
+        return new Destination(id, name, new LatLng(lat, lon));
     }
 
     public static List<Node> getNodesForDest(int id) {
@@ -352,13 +362,66 @@ public class LocalDB {
         return nodes;
     }
 
+    private static void readFromJson(Context context) {
+        BufferedReader reader = null;
+        try {
+            InputStreamReader is = new InputStreamReader(context.getAssets().open("map_data.json"));
+            reader = new BufferedReader(is);
+
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+
+            String json = out.toString();
+            JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+
+            JsonArray destinations = jsonObject.getAsJsonObject("map_data").getAsJsonArray("destinations");
+            for(int i = 0; i < destinations.size(); i++) {
+                int id = destinations.get(i).getAsJsonObject().get("id").getAsInt();
+                String name = destinations.get(i).getAsJsonObject().get("name").getAsString();
+                LatLng pos = new LatLng(destinations.get(i).getAsJsonObject().get("latitude").getAsDouble(), destinations.get(i).getAsJsonObject().get("longitude").getAsDouble());
+                addDestination(new Destination(id, name, pos));
+            }
+
+            JsonArray nodes = jsonObject.getAsJsonObject("map_data").getAsJsonArray("nodes");
+            for (int i = 0; i < nodes.size(); i++) {
+                int id =  nodes.get(i).getAsJsonObject().get("id").getAsInt();
+                int destId = nodes.get(i).getAsJsonObject().get("destination_id").getAsInt();
+                LatLng pos = new LatLng(nodes.get(i).getAsJsonObject().get("latitude").getAsDouble(), nodes.get(i).getAsJsonObject().get("longitude").getAsDouble());
+                addNode(new Node(id, pos, destId));
+            }
+
+            JsonArray edges = jsonObject.getAsJsonObject("map_data").getAsJsonArray("edges");
+            for (int i = 0; i < edges.size(); i++) {
+                Node node1 = getNode(edges.get(i).getAsJsonObject().get("node1").getAsInt());
+                Node node2 = getNode(edges.get(i).getAsJsonObject().get("node2").getAsInt());
+                addEdge(new Edge(i, node1, node2));
+            }
+        } catch (IOException e) {
+            //log the exception
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                }
+            }
+        }
+    }
+
     /**
      * Helper class that sets up the database/upgrades it
      */
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
+        private Context c;
+
         public DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            c = context;
         }
 
         @Override
@@ -367,7 +430,7 @@ public class LocalDB {
             db.execSQL(Nodes_T.CREATE_TABLE);
             db.execSQL(Edges_T.CREATE_TABLE);
 
-            // TODO add the routine for getting Daniel/Josh's JSON data into the DB here
+            readFromJson(c);
         }
 
         @Override
@@ -383,7 +446,7 @@ public class LocalDB {
             db.execSQL(Nodes_T.CREATE_TABLE);
             db.execSQL(Edges_T.CREATE_TABLE);
 
-            // TODO add the JSON routine here too
+            readFromJson(c);
         }
     }
 }

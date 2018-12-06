@@ -64,7 +64,38 @@ public class Graph {
         return null;
     }
 
+    public List<Polyline> getShortestPath(Node start, Destination dest) {
+        // choose node to use as destination
+        List<Node> destNodes = dest.getNodes();
+        Node dNode = destNodes.get(0);
+        for (int i = 1; i < destNodes.size(); i++) {
+            if (start.distanceTo(destNodes.get(i)) < start.distanceTo(dNode))
+                dNode = destNodes.get(i);
+        }
+
+        return getShortestPath(start, dNode);
+    }
+
+    public List<Polyline> getShortestPath(Destination start, Destination dest) {
+        // choose starting node
+        List<Node> startNodes = start.getNodes();
+        Node sNode = startNodes.get(0);
+        Node destPos = new Node(-1, dest.getDestPin(), -1); // dummy node for distanceTo calls
+        for(int i = 1; i < startNodes.size(); i++) {
+            if(startNodes.get(i).distanceTo(destPos) < sNode.distanceTo(destPos))
+                sNode = startNodes.get(i);
+        }
+
+        // choose ending node
+        List<Node> destNodes = dest.getNodes();
+        Node dNode = destNodes.get(0);
+        for (int i = 1; i < destNodes.size(); i++) {
+            if (sNode.distanceTo(destNodes.get(i)) < sNode.distanceTo(dNode))
+                dNode = destNodes.get(i);
+        }
+
+        return getShortestPath(sNode, dNode);
+    }
+
 
 }
-
-

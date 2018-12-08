@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.*;
+import java.util.List;
+
 import com.google.android.gms.maps.model.*;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -52,9 +54,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_DEST_REQUEST) {
             if (resultCode == RESULT_OK) {
-                String start = data.getStringExtra("start");
-                String end = data.getStringExtra("end");
-                // TODO lookup destinations using above strings, find path between them
+                int start = data.getIntExtra("start", -1);
+                int end = data.getIntExtra("end", -1);
+                if (start >= 0 && end >= 0 && start != end) {
+                    List<Destination> destinations = GRAPH.getDestinations();
+                    Destination startDest = null;
+                    Destination endDest = null;
+                    for (int i = 0; i < destinations.size(); i++) {
+                        if (destinations.get(i).getId() == start)
+                            startDest = destinations.get(i);
+                        if (destinations.get(i).getId() == end)
+                            endDest = destinations.get(i);
+                    }
+                    if (startDest != null && endDest != null) {
+                        List<Polyline> path = GRAPH.getShortestPath(startDest, endDest);
+                        // TODO complete shortest path computation, then add path to map
+                    }
+                }
             }
         }
     }

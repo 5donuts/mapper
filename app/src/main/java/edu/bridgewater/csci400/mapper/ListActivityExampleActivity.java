@@ -16,6 +16,7 @@ public class ListActivityExampleActivity extends Activity {
 
     private Spinner start;
     private Spinner dest;
+    private List<Destination> destinations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class ListActivityExampleActivity extends Activity {
 
 
         // Create a list data which will be displayed in inner ListView.
-        List<Destination> destinations = MapsActivity.GRAPH.getDestinations();
+        destinations = MapsActivity.GRAPH.getDestinations();
         List<String> listData = new ArrayList<>();
         for(Destination d : destinations)
             listData.add(d.getName());
@@ -43,8 +44,8 @@ public class ListActivityExampleActivity extends Activity {
     }
 
     public void navigate(View view) {
-        String startPoint = (String) start.getSelectedItem();
-        String endPoint = (String) dest.getSelectedItem();
+        int startPoint = destinations.get(start.getSelectedItemPosition()).getId();
+        int endPoint = destinations.get(dest.getSelectedItemPosition()).getId();
 
         //Create intent to return selections to map activity
         Intent mapIntent = new Intent();

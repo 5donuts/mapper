@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import edu.bridgewater.csci400.mapper.util.Destination;
 import edu.bridgewater.csci400.mapper.util.Graph;
 
 import com.google.gson.*;
@@ -28,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private MapsActivity mListener;
     public static Graph GRAPH;
+    public static final int PICK_DEST_REQUEST = 1;
 
 
     @Override
@@ -43,7 +45,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void viewList(View view) {
         Intent intent = new Intent(this, ListActivityExampleActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, PICK_DEST_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_DEST_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String start = data.getStringExtra("start");
+                String end = data.getStringExtra("end");
+                // TODO lookup destinations using above strings, find path between them
+            }
+        }
     }
 
     @Override

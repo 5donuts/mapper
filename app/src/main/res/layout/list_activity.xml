@@ -1,13 +1,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@id/android:list"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:headerDividersEnabled="true"/>
+        android:layout_height="52dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:textAlignment="viewStart"
+        android:textSize="22sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="19dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/BasicSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="52dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/destination"
+        android:textAlignment="viewStart"
+        android:textSize="22sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="19dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        style="@style/BasicSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="59dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="navigate"
+        android:text="@string/navigate" />
 
 
 </LinearLayout>

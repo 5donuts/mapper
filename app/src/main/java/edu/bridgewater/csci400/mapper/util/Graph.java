@@ -100,5 +100,19 @@ public class Graph {
         return getShortestPath(sNode, dNode);
     }
 
+    public double distance(LatLng p1, LatLng p2) {
+        double R =  6378137; // Earth’s mean radius in meters
+        double dLat = radians(p2.latitude - p1.latitude);
+        double dLong = radians(p2.longitude - p1.longitude);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(radians(p1.latitude)) * Math.cos(radians(p2.latitude)) *
+                        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = R * c; // Distance in meters
+        return d;
+    }
 
+    private double radians(double x) {
+        return x * Math.PI / 180;
+    }
 }

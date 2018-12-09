@@ -1,6 +1,12 @@
 package edu.bridgewater.csci400.mapper;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -15,10 +21,13 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import edu.bridgewater.csci400.mapper.util.Destination;
 import edu.bridgewater.csci400.mapper.util.Graph;
+import edu.bridgewater.csci400.mapper.util.Node;
 
 import com.google.gson.*;
+
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -27,14 +36,18 @@ import java.util.List;
 import com.google.android.gms.maps.model.*;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnInfoWindowCloseListener {
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnInfoWindowCloseListener, LocationListener {
 
 
     private GoogleMap mMap;
     private MapsActivity mListener;
+    private LocationManager locationManager;
+    private String networkLocation = LocationManager.NETWORK_PROVIDER;
+    private String gpsLocation = LocationManager.GPS_PROVIDER;
     public static Graph GRAPH;
     public static final int PICK_DEST_REQUEST = 1;
 
+    private static final Integer LOC = -1;
     private static final Integer NONE = 0;
     private static final Integer START = 1;
     private static final Integer DEST = 2;
@@ -42,6 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker startMarker = null;
     private Marker destMarker = null;
     private List<Marker> mapMarkers;
+    private Marker myLoc = null;
+    private boolean showLocation = false;
 
 
     @Override
@@ -53,6 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         GRAPH = new Graph(this);
+        // Acquire a reference to the system Location Manager
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
     }
 
     public void viewList(View view) {
@@ -138,7 +155,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onInfoWindowClick(Marker marker) {
         marker.hideInfoWindow();
-        if (selection.equals(NONE) || selection.equals(DEST) && !(marker.equals(destMarker))) {
+        if (marker.getTag().equals(LOC)) {
+            List<Node> nodes = GRAPH.getNodes();
+            Node closestNode = nodes.get(0);
+            double minDistance = GRAPH.distance(closestNode.getPosition(), marker.getPosition());
+            for (Node n : nodes) {
+                double distance = GRAPH.distance(n.getPosition(), marker.getPosition());
+                if (distance < minDistance) {
+                    closestNode = n;
+                    minDistance = distance;
+                }
+            }
+            // TODO show as start marker, set closestNode as starting node for shortest path
+        } else if (selection.equals(NONE) || selection.equals(DEST) && !(marker.equals(destMarker))) {
             marker.setSnippet("Starting point");
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             marker.setTag(START);
@@ -181,7 +210,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClose(Marker marker) {
-        if (marker.getTag() == NONE) {
+        if (marker.getTag().equals(NONE)) {
             marker.setSnippet("Tap to start here");
         }
     }
@@ -254,6 +283,67 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }*/
     }
+
+    public void toggleLocation(View view) {
+        Button locationButton = findViewById(R.id.button3);
+        if (showLocation) {
+            locationButton.setText(getString(R.string.locationShow));
+            myLoc.remove();
+            myLoc = null;
+            locationManager.removeUpdates(this);
+        } else {
+            locationButton.setText(getString(R.string.locationHide));
+            getLocation();
+        }
+        showLocation = !showLocation;
+    }
+
+    public void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+            ActivityCompat.requestPermissions(this, permissions, 1);
+            return;
+        }
+        Location lastKnownLocation = locationManager.getLastKnownLocation(networkLocation);
+        if (lastKnownLocation == null) {
+            Log.d("location", "Location was null");
+            lastKnownLocation = locationManager.getLastKnownLocation(gpsLocation);
+
+        }
+        if (lastKnownLocation != null) {
+            Log.d("location", Double.toString(lastKnownLocation.getLatitude()));
+            LatLng position = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            if (myLoc == null) {
+                myLoc = mMap.addMarker(new MarkerOptions()
+                        .position(position)
+                        .title("My Location")
+                        .zIndex(2)
+                        .icon(BitmapDescriptorFactory.fromAsset("locMarker.png")));
+                myLoc.setTag(LOC);
+            } else {
+                myLoc.setPosition(position);
+            }
+        }
+        locationManager.requestLocationUpdates(networkLocation, 0, 0, this);
+    }
+
+    public void onLocationChanged(Location location) {
+        LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+        if (myLoc == null) {
+            myLoc = mMap.addMarker(new MarkerOptions()
+                    .position(position)
+                    .title("My Location")
+                    .zIndex(2)
+                    .icon(BitmapDescriptorFactory.fromAsset("locMarker.png")));
+            myLoc.setTag(LOC);
+        } else {
+            myLoc.setPosition(position);
+        }
+    }
+
+    public void onStatusChanged(String provider, int status, Bundle extras) {}
+    public void onProviderEnabled(String provider) {}
+    public void onProviderDisabled(String provider) {}
 }
 
 

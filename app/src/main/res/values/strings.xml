@@ -30,6 +30,8 @@
     <string name="destination">Destination:</string>
     <string name="start">Start:</string>
     <string name="navigate">Navigate</string>
+    <string name="locationHide">📍 Hide location</string>
+    <string name="locationShow">📍 Show location</string>
 
 
 </resources>

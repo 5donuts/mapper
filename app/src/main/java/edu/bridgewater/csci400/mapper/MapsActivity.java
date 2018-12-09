@@ -21,17 +21,27 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.gms.maps.model.*;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnInfoWindowCloseListener {
 
 
     private GoogleMap mMap;
     private MapsActivity mListener;
     public static Graph GRAPH;
     public static final int PICK_DEST_REQUEST = 1;
+
+    private static final Integer NONE = 0;
+    private static final Integer START = 1;
+    private static final Integer DEST = 2;
+    private Integer selection = NONE;
+    private Marker startMarker = null;
+    private Marker destMarker = null;
+    private List<Marker> mapMarkers;
 
 
     @Override
@@ -67,6 +77,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             endDest = destinations.get(i);
                     }
                     if (startDest != null && endDest != null) {
+                        //Adjust markers to match selected start and end points
+                        if (startMarker != null) {
+                            startMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+                            destMarker.setSnippet("Tap to start here");
+                            startMarker.setTag(NONE);
+                        }
+                        if (destMarker != null) {
+                            destMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+                            destMarker.setSnippet("Tap to start here");
+                            destMarker.setTag(NONE);
+                        }
+                        selection = NONE;
+                        for (int i = 0; i < mapMarkers.size(); i++) {
+                            Marker marker = mapMarkers.get(i);
+                            if (marker.getTitle().equals(startDest.getName())) {
+                                marker.hideInfoWindow();
+                                marker.setSnippet("Starting point");
+                                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                marker.setTag(START);
+                                startMarker = marker;
+                                selection = START;
+                            } else if (marker.getTitle().equals(endDest.getName())) {
+                                marker.hideInfoWindow();
+                                marker.setSnippet("Destination");
+                                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                marker.setTag(DEST);
+                                destMarker = marker;
+                                marker.showInfoWindow();
+                                //Center map on destination
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                            }
+                        }
+
                         List<Polyline> path = GRAPH.getShortestPath(startDest, endDest);
                         // TODO complete shortest path computation, then add path to map
                     }
@@ -75,17 +118,90 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /** Called when the user taps a marker */
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        if (marker.getTag() == null) {
+            marker.setTag(NONE);
+        }
+        if (selection.equals(START) && marker.getTag() == NONE) {
+            marker.setSnippet("Tap to navigate");
+        }
+        return false;
+    }
+
+    /** Called when the user taps a marker label */
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        marker.hideInfoWindow();
+        if (selection.equals(NONE) || selection.equals(DEST) && !(marker.equals(destMarker))) {
+            marker.setSnippet("Starting point");
+            marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            marker.setTag(START);
+            if (startMarker != null) {
+                startMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+                startMarker.setTag(NONE);
+            }
+            startMarker = marker;
+            selection = START;
+        } else if (!(marker.equals(startMarker) || marker.equals(destMarker))) {
+            marker.setSnippet("Destination");
+            marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            marker.setTag(DEST);
+            if (destMarker != null) {
+                destMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+                destMarker.setSnippet("Tap to start here");
+                destMarker.setTag(NONE);
+            }
+            destMarker = marker;
+            // TODO use startMarker and destMarker to compute and display path
+        } else {
+            if (marker.equals(startMarker) || selection.equals(DEST)) {
+                marker.setSnippet("Tap to start here");
+                if (selection.equals(DEST)) {
+                    destMarker = null;
+                    selection = NONE;
+                } else {
+                    startMarker = null;
+                    selection = DEST;
+                }
+            } else {
+                marker.setSnippet("Tap to navigate");
+                destMarker = null;
+            }
+            marker.setTag(NONE);
+            marker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+        }
+        marker.showInfoWindow();
+    }
+
+    @Override
+    public void onInfoWindowClose(Marker marker) {
+        if (marker.getTag() == NONE) {
+            marker.setSnippet("Tap to start here");
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMinZoomPreference((float)15.5);
 
-        // Add a marker in Bridgewater College and move the camera
-        LatLng bridgewaterCollege = new LatLng(38.3787678, -78.9705121);
-        mMap.addMarker(new MarkerOptions().position(bridgewaterCollege).title("Bridgewater College"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bridgewaterCollege, 16)); // zoom level of 20
+        List<Destination> destinations = GRAPH.getDestinations();
+        mapMarkers = new ArrayList<>();
+        for (Destination d: destinations) {
+            mapMarkers.add(mMap.addMarker(new MarkerOptions()
+                    .position(d.getDestPin())
+                    .snippet("Tap to start here")
+                    .title(d.getName())
+                    .icon(BitmapDescriptorFactory.fromAsset("marker.png"))));
+        }
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
+        mMap.setOnInfoWindowCloseListener(this);
 
         //Temporary demo code//
-        BufferedReader reader = null;
+        /*BufferedReader reader = null;
         try {
             InputStreamReader is = new InputStreamReader(getAssets().open("map_data.json"));
             reader = new BufferedReader(is);
@@ -132,7 +248,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //log the exception
                 }
             }
-        }
+        }*/
     }
 }
 

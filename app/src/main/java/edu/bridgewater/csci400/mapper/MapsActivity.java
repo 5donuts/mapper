@@ -57,6 +57,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void viewList(View view) {
         Intent intent = new Intent(this, ListActivityExampleActivity.class);
+        if (startMarker != null)
+            intent.putExtra("startName", startMarker.getTitle());
+        if (destMarker != null)
+            intent.putExtra("destName", destMarker.getTitle());
         startActivityForResult(intent, PICK_DEST_REQUEST);
     }
 
@@ -80,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //Adjust markers to match selected start and end points
                         if (startMarker != null) {
                             startMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
-                            destMarker.setSnippet("Tap to start here");
+                            startMarker.setSnippet("Tap to start here");
                             startMarker.setTag(NONE);
                         }
                         if (destMarker != null) {

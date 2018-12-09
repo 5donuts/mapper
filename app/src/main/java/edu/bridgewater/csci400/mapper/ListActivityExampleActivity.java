@@ -25,6 +25,7 @@ public class ListActivityExampleActivity extends Activity {
         // Set the activity layout xml file.
         setContentView(R.layout.list_activity);
 
+        Intent intent = getIntent();
 
         // Create a list data which will be displayed in inner ListView.
         destinations = MapsActivity.GRAPH.getDestinations();
@@ -41,6 +42,20 @@ public class ListActivityExampleActivity extends Activity {
 
         start.setAdapter(adapter);
         dest.setAdapter(adapter);
+
+        // Get selected destinations from maps activity intent
+        String startName = intent.getStringExtra("startName");
+        String destName = intent.getStringExtra("destName");
+        if (startName != null || destName != null) {
+            for (int i = 0; i < destinations.size(); i++) {
+                Destination destination = destinations.get(i);
+                if (startName != null && destination.getName().equals(startName)) {
+                    start.setSelection(i);
+                } else if (destName != null && destination.getName().equals(destName)) {
+                    dest.setSelection(i);
+                }
+            }
+        }
     }
 
     public void navigate(View view) {

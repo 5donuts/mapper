@@ -286,23 +286,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void toggleLocation(View view) {
         Button locationButton = findViewById(R.id.button3);
+        boolean toggleSuccess = true;
         if (showLocation) {
             locationButton.setText(getString(R.string.locationShow));
             myLoc.remove();
             myLoc = null;
             locationManager.removeUpdates(this);
         } else {
-            locationButton.setText(getString(R.string.locationHide));
-            getLocation();
+            toggleSuccess = getLocation();
+            if (toggleSuccess)
+                locationButton.setText(getString(R.string.locationHide));
         }
-        showLocation = !showLocation;
+        if (toggleSuccess)
+            showLocation = !showLocation;
     }
 
-    public void getLocation() {
+    public boolean getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
             ActivityCompat.requestPermissions(this, permissions, 1);
-            return;
+            return false;
         }
         Location lastKnownLocation = locationManager.getLastKnownLocation(networkLocation);
         if (lastKnownLocation == null) {
@@ -325,6 +328,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         locationManager.requestLocationUpdates(networkLocation, 0, 0, this);
+        return true;
     }
 
     public void onLocationChanged(Location location) {

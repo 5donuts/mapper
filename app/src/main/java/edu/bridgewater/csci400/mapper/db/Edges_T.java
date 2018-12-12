@@ -24,6 +24,6 @@ public class Edges_T implements BaseColumns {
 
     public static final String GET_EDGES = "SELECT * FROM " + TABLE_NAME;
 
-    public static final String GET_EDGE_WITH_NODE = "SELECT * FROM " + TABLE_NAME + " WHERE " +
+    public static final String GET_EDGES_WITH_NODE = "SELECT * FROM " + TABLE_NAME + " WHERE " +
             NODE_1 + " = ? OR " + NODE_2 + " = ?";
 }

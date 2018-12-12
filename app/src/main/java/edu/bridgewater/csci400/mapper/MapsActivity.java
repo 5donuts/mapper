@@ -127,8 +127,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                         }
 
-                        List<Polyline> path = GRAPH.getShortestPath(startDest, endDest);
-                        // TODO complete shortest path computation, then add path to map
+                        List<Polyline> path = GRAPH.getShortestPath(startDest, endDest, mMap);
+                        // TODO refactor this? the polylines are already drawn
                     }
                 }
             }
@@ -154,9 +154,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (marker.getTag().equals(LOC)) {
             List<Node> nodes = GRAPH.getNodes();
             Node closestNode = nodes.get(0);
-            double minDistance = GRAPH.distance(closestNode.getPosition(), marker.getPosition());
+            double minDistance = GRAPH.getDistanceBetween(closestNode.getPosition(), marker.getPosition());
             for (Node n : nodes) {
-                double distance = GRAPH.distance(n.getPosition(), marker.getPosition());
+                double distance = GRAPH.getDistanceBetween(n.getPosition(), marker.getPosition());
                 if (distance < minDistance) {
                     closestNode = n;
                     minDistance = distance;

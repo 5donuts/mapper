@@ -12,7 +12,7 @@ import java.util.List;
 
 import edu.bridgewater.csci400.mapper.util.Destination;
 
-public class ListActivityExampleActivity extends Activity {
+public class ListActivity extends Activity {
 
     private Spinner start;
     private Spinner dest;
@@ -34,9 +34,9 @@ public class ListActivityExampleActivity extends Activity {
             listData.add(d.getName());
 
         // Create the ArrayAdapter using the spinner layout and the list data.
-        start = (Spinner) findViewById(R.id.spinner);
-        dest = (Spinner) findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        start = findViewById(R.id.spinner);
+        dest = findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listData);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -49,9 +49,9 @@ public class ListActivityExampleActivity extends Activity {
         if (startName != null || destName != null) {
             for (int i = 0; i < destinations.size(); i++) {
                 Destination destination = destinations.get(i);
-                if (startName != null && destination.getName().equals(startName)) {
+                if (destination.getName().equals(startName)) {
                     start.setSelection(i);
-                } else if (destName != null && destination.getName().equals(destName)) {
+                } else if (destination.getName().equals(destName)) {
                     dest.setSelection(i);
                 }
             }

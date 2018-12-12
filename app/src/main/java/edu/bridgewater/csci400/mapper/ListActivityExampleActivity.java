@@ -1,57 +1,72 @@
 package edu.bridgewater.csci400.mapper;
 
-import android.app.ListActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActivityExampleActivity extends ListActivity {
+import edu.bridgewater.csci400.mapper.util.Destination;
+
+public class ListActivityExampleActivity extends Activity {
+
+    private Spinner start;
+    private Spinner dest;
+    private List<Destination> destinations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // Set the activity layout xml file.
-
-
         setContentView(R.layout.list_activity);
 
+        Intent intent = getIntent();
 
         // Create a list data which will be displayed in inner ListView.
-        List<String> listData = new ArrayList<String>();
-        listData.add("Yount Hall");
-        listData.add("Memorial Hall");
-        listData.add("Flory Hall");
-        listData.add("Carter Center");
-        listData.add("John Kenny Forrer Library");
-        listData.add("Wright Hall");
-        listData.add("Heritage Hall");
-        listData.add("Geisert Hall");
-        listData.add("Bowman Hall");
-        listData.add("McKinney Center");
-        listData.add("Wampler Towers");
-        listData.add("Wakeman Hall");
-        listData.add("Blue Ridge Hall");
-        listData.add("Daleville Hall");
-        listData.add("Dillon Hall");
-        listData.add("Funkhouser Center");
-        listData.add("Moomaw Hall");
-        listData.add("Rebecca Hall");
-        listData.add("Kline Campus Center");
-        listData.add("Cole Hall");
-        listData.add("Stone Village");
-        listData.add("Bicknell House");
-        listData.add("Nininger Hall");
+        destinations = MapsActivity.GRAPH.getDestinations();
+        List<String> listData = new ArrayList<>();
+        for(Destination d : destinations)
+            listData.add(d.getName());
 
-        // Create the ArrayAdapter use the item row layout and the list data.
-        ArrayAdapter<String> listDataAdapter = new ArrayAdapter<String>(this, R.layout.activity_row_list, listData);
+        // Create the ArrayAdapter using the spinner layout and the list data.
+        start = (Spinner) findViewById(R.id.spinner);
+        dest = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listData);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Set this adapter to inner ListView object.
-        this.setListAdapter(listDataAdapter);
+        start.setAdapter(adapter);
+        dest.setAdapter(adapter);
+
+        // Get selected destinations from maps activity intent
+        String startName = intent.getStringExtra("startName");
+        String destName = intent.getStringExtra("destName");
+        if (startName != null || destName != null) {
+            for (int i = 0; i < destinations.size(); i++) {
+                Destination destination = destinations.get(i);
+                if (startName != null && destination.getName().equals(startName)) {
+                    start.setSelection(i);
+                } else if (destName != null && destination.getName().equals(destName)) {
+                    dest.setSelection(i);
+                }
+            }
+        }
+    }
+
+    public void navigate(View view) {
+        int startPoint = destinations.get(start.getSelectedItemPosition()).getId();
+        int endPoint = destinations.get(dest.getSelectedItemPosition()).getId();
+
+        //Create intent to return selections to map activity
+        Intent mapIntent = new Intent();
+        mapIntent.putExtra("start", startPoint);
+        mapIntent.putExtra("end", endPoint);
+        setResult(Activity.RESULT_OK, mapIntent);
+        finish();
     }
 }

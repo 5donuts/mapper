@@ -13,11 +13,11 @@ public class Destinations_T implements BaseColumns {
     public static final String LONGITUDE = "Longitude";
 
     // SQL statements
-    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_NAME + "(" +
-            _ID + " INTEGER PRIMARY KEY ON UPDATE CASCADE," +
-            LATITUDE + " DOUBLE NOT NULL," +
-            LONGITUDE + " DOUBLE NOT NULL," +
-            NAME + " VARCHAR(100) NOT NULL )";
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
+            _ID + " INTEGER PRIMARY KEY, " +
+            LATITUDE + " DOUBLE NOT NULL, " +
+            LONGITUDE + " DOUBLE NOT NULL, " +
+            NAME + " VARCHAR(100) NOT NULL)";
 
     public static final String DELETE_TABLE = " DELETE TABLE IF EXISTS " + TABLE_NAME;
 

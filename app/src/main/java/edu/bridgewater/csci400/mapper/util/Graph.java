@@ -1,6 +1,8 @@
 package edu.bridgewater.csci400.mapper.util;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,7 +22,8 @@ public class Graph {
     private List<Edge> edges;
     private List<Destination> destinations;
 
-    public Graph() {
+    public Graph(Context context) {
+        LocalDB.openDB(context);
         nodes= LocalDB.getNodes();
         edges = LocalDB.getEdges();
         destinations = LocalDB.getDestinations();
@@ -48,8 +51,19 @@ public class Graph {
         return pinList;
     }
 
+    public List<Destination> getDestinations() {
+        return destinations;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
     public List<Polyline> getShortestPath(Node start, Node dest) {
-        // TODO Implement Dijkstra's shortest path algorithm here
         return null;
     }
 
@@ -86,7 +100,19 @@ public class Graph {
         return getShortestPath(sNode, dNode);
     }
 
+    public double distance(LatLng p1, LatLng p2) {
+        double R =  6378137; // Earth’s mean radius in meters
+        double dLat = radians(p2.latitude - p1.latitude);
+        double dLong = radians(p2.longitude - p1.longitude);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(radians(p1.latitude)) * Math.cos(radians(p2.latitude)) *
+                        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = R * c; // Distance in meters
+        return d;
+    }
 
+    private double radians(double x) {
+        return x * Math.PI / 180;
+    }
 }
-
-

@@ -14,9 +14,9 @@ public class Edges_T implements BaseColumns {
 
     // SQL statements
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
-            TABLE_NAME + "(" + _ID + " INTEGER PRIMARY KEY ON UPDATE CASCADE," +
-            NODE_1 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + ")," +
-            NODE_2 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + "))";
+            TABLE_NAME + "(" + _ID + " INTEGER PRIMARY KEY," +
+            NODE_1 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + ") ON UPDATE CASCADE," +
+            NODE_2 + " INTEGER NOT NULL REFERENCES " + Nodes_T.TABLE_NAME + "(" + Nodes_T._ID + ") ON UPDATE CASCADE)";
 
     public static final String DELETE_TABLE = "DELETE TABLE IF EXISTS " + TABLE_NAME;
 

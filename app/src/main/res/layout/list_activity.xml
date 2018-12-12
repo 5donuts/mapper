@@ -1,185 +1,113 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <ListView
-        android:id="@id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:headerDividersEnabled="true"/>
+    android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="Bridgewater Places"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/start"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/space2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/yount_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/BasicSpinner"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/space3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space2" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/memorial_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/flory_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/carter_center"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/john_Kenny_Forrer_Library"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Wright_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Heritage_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Geisert_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Bowman_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/McKinney_Center"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" /> <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorBlue"
-    android:text="@string/Wampler_Towers"
-    android:textColor="@android:color/white"
-    android:textSize="25dp" />
+    <Space
+        android:id="@+id/space3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintBottom_toTopOf="@+id/space4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Wakeman_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/destination"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space3" />
+
+    <Space
+        android:id="@+id/space4"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space3" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        style="@style/BasicSpinner"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/space5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space4" />
+
+    <Space
+        android:id="@+id/space5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Blue_Ridge_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Daleville_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Dillon_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Funkhouser_Center"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Moomaw_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/rebecca_hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Kline_Campus_Center"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Cole_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Stone_Village"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Bicknell_House"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:text="@string/Nininger_Hall"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="110dp"
+        android:onClick="navigate"
+        android:text="@string/navigate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space5" />
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

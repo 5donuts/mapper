@@ -15,10 +15,10 @@ public class Nodes_T implements BaseColumns {
 
     // SQL statements
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( " +
-            _ID + " INTEGER PRIMARY KEY ON UPDATE CASCADE," +
+            _ID + " INTEGER PRIMARY KEY," +
             LATITUDE + " DOUBLE NOT NULL," +
             LONGITUDE + " DOUBLE NOT NULL," +
-            DEST_ID + " INTEGER REFERENCES DESTINATIONS(_ID))";
+            DEST_ID + " INTEGER REFERENCES DESTINATIONS(_ID) ON UPDATE CASCADE)";
 
     public static final String DELETE_TABLE = "DELETE TABLE IF EXISTS " + TABLE_NAME;
 

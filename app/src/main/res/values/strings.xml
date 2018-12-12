@@ -27,7 +27,11 @@
         <string name="Bicknell_House"> Bicknell House</string>
         <string name="Nininger_Hall"> Nininger Hall</string>
 
-
+    <string name="destination">Destination:</string>
+    <string name="start">Start:</string>
+    <string name="navigate">Navigate</string>
+    <string name="locationHide">📍 Hide location</string>
+    <string name="locationShow">📍 Show location</string>
 
 
 </resources>

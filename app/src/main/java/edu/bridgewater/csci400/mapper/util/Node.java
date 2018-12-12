@@ -2,6 +2,7 @@ package edu.bridgewater.csci400.mapper.util;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.bridgewater.csci400.mapper.db.LocalDB;
@@ -31,6 +32,14 @@ public class Node {
 
     public List<Edge> getEdges() {
         return LocalDB.getEdgesWithNode(this);
+    }
+
+    public List<Node> getAdjacentNodes() {
+        List<Edge> edges = getEdges();
+        List<Node> nodes = new ArrayList<>();
+        for(Edge e : edges)
+            nodes.addAll(e.getNodes());
+        return nodes;
     }
 
     public double distanceTo(Node n) {

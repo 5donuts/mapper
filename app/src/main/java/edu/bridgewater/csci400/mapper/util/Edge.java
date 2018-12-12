@@ -27,7 +27,11 @@ public class Edge {
         return l;
     }
 
-    public double getDistance() {
+    public boolean contains(Node n) {
+        return node_1 == n || node_2 == n;
+    }
+
+    public double distanceBetweenNodes() {
         return node_1.distanceTo(node_2);
     }
 }

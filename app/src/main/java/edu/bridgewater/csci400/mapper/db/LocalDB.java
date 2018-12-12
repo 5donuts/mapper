@@ -143,12 +143,25 @@ public class LocalDB {
         return edges;
     }
 
+    public static Edge getEdgeWithNodes(Node n1, Node n2) {
+        if (db == null) {
+            Log.e(TAG, "DB must be opened before getEdgeWithNodes(Node, Node) can execute.");
+            return null;
+        }
+        List<Edge> edges = getEdgesWithNode(n1);
+        for(Edge e : edges) {
+            if(e.contains(n2))
+                return e;
+        }
+        return null;
+    }
+
     public static List<Edge> getEdgesWithNode(Node n) {
         if (db == null) {
             Log.e(TAG, "DB must be opened before getEdgesWithNode(Node) can execute.");
             return null;
         }
-        String query = Edges_T.GET_EDGE_WITH_NODE;
+        String query = Edges_T.GET_EDGES_WITH_NODE;
         String[] data = {n.getId() + "", n.getId() + ""};
         Cursor c = db.rawQuery(query, data);
         if(c == null || c.getCount() == 0)

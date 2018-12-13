@@ -54,7 +54,7 @@ public class DijkstraSP {
 
     private double getDistance(Vertex node, Vertex target) {
         for(Edge e : edges) {
-            if(e.getSource().equals(node) && e.getDestination().equals(target))
+            if((e.getSource().equals(node) && e.getDestination().equals(target)) || (e.getSource().equals(target) && e.getDestination().equals(node)))
                 return e.getWeight();
         }
         throw new RuntimeException("Should not happen");
@@ -65,6 +65,8 @@ public class DijkstraSP {
         for(Edge e : edges) {
             if(e.getSource().equals(node) && !isSettled(e.getDestination()))
                 neighbors.add(e.getDestination());
+            if(e.getDestination().equals(node) && !isSettled(e.getSource()))
+                neighbors.add(e.getSource());
         }
         return neighbors;
     }
@@ -99,6 +101,7 @@ public class DijkstraSP {
         LinkedList<Vertex> path = new LinkedList<>();
         Vertex step = target;
         // check if a path exists
+        Vertex test = predecessors.get(step);
         if(predecessors.get(step) == null)
             return null;
         path.add(step);

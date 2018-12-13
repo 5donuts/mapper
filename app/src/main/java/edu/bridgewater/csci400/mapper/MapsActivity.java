@@ -60,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker myLoc = null;
     private boolean showLocation = false;
     private boolean fromLocation = false;
+    private List<Polyline> path = null;
 
 
     @Override
@@ -73,6 +74,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GRAPH = new Graph(this);
         // Acquire a reference to the system Location Manager
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+    }
+
+    public void clearPath() {
+        if (path != null) {
+            for (Polyline line : path) {
+                line.remove();
+            }
+            path = null;
+        }
     }
 
     public void viewList(View view) {
@@ -133,9 +143,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
                             }
                         }
-
-                        List<Polyline> path = GRAPH.getShortestPath(startDest, endDest, mMap);
-                        // TODO refactor this? the polylines are already drawn
+                        clearPath();
+                        path = GRAPH.getShortestPath(startDest, endDest, mMap);
                     }
                 }
             }
@@ -159,13 +168,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onInfoWindowClick(Marker marker) {
         marker.hideInfoWindow();
         if (marker.getTag().equals(LOC)) {
+            fromLocation = !fromLocation;
             if (fromLocation) {
                 marker.setSnippet("Starting point");
+                if (startMarker != null) {
+                    startMarker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+                    startMarker.setTag(NONE);
+                    startMarker = null;
+                }
+                selection = START;
                 showPathFromMarkers();
             } else {
+                clearPath();
+                selection = DEST;
                 marker.setSnippet("Tap to start here");
             }
-            fromLocation = !fromLocation;
         } else if (selection.equals(NONE) || selection.equals(DEST) && !(marker.equals(destMarker))) {
             marker.setSnippet("Starting point");
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
@@ -176,6 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             startMarker = marker;
             selection = START;
+            fromLocation = false;
             showPathFromMarkers();
         } else if (!(marker.equals(startMarker) || marker.equals(destMarker))) {
             marker.setSnippet("Destination");
@@ -204,6 +222,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             marker.setTag(NONE);
             marker.setIcon(BitmapDescriptorFactory.fromAsset("marker.png"));
+            clearPath();
         }
         marker.showInfoWindow();
     }
@@ -236,7 +255,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (destinations.get(i).getName().equals(end))
                         endDest = destinations.get(i);
                 }
-                //List<Polyline> path = GRAPH.getShortestPath(startNode, endDest, mMap);
+                clearPath();
+                path = GRAPH.getShortestPath(startNode, endDest, mMap);
             } else {
                 String start = startMarker.getTitle();
                 String end = destMarker.getTitle();
@@ -249,7 +269,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (destinations.get(i).getName().equals(end))
                         endDest = destinations.get(i);
                 }
-                //List<Polyline> path = GRAPH.getShortestPath(startDest, endDest, mMap);
+                clearPath();
+                path = GRAPH.getShortestPath(startDest, endDest, mMap);
             }
         }
     }
@@ -328,6 +349,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         boolean toggleSuccess = true;
         if (showLocation) {
             locationButton.setText(getString(R.string.locationShow));
+            if (fromLocation) {
+                clearPath();
+                selection = DEST;
+                fromLocation = false;
+            }
             myLoc.remove();
             myLoc = null;
             locationManager.removeUpdates(this);

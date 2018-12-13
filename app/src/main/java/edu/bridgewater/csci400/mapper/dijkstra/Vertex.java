@@ -27,4 +27,10 @@ public class Vertex {
     public boolean equals(Object v) {
         return this.id == ((Vertex) v).id;
     }
+
+    @Override
+    public int hashCode()
+    {
+        return this.id;
+    }
 }

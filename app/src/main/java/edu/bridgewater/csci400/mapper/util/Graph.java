@@ -17,8 +17,8 @@ import edu.bridgewater.csci400.mapper.dijkstra.DijkstraSP;
 import edu.bridgewater.csci400.mapper.dijkstra.Vertex;
 
 public class Graph {
-    private static final float POLYLINE_WIDTH = 5.0F;
-    private static final int POLYLINE_COLOR = Color.BLUE;
+    private static final float POLYLINE_WIDTH = 7.0F;
+    private static final int POLYLINE_COLOR = 0xFF49C7FF;
 
     private List<Node> nodes;
     private List<Edge> edges;
@@ -32,9 +32,9 @@ public class Graph {
         destinations = LocalDB.getDestinations();
     }
 
-    public List<Polyline> getAllPaths(GoogleMap map){
+    /*public List<Polyline> getAllPaths(GoogleMap map){
         return buildPolylines(edges, map);
-    }
+    }*/
 
     public List<Destination> getDestinations() {
         return destinations;
@@ -64,12 +64,25 @@ public class Graph {
         return x * Math.PI / 180;
     }
 
-    private List<Polyline> buildPolylines(List<Edge> edges, GoogleMap map) {
+    /*private List<Polyline> buildPolylines(List<Edge> edges, GoogleMap map) {
         List<Polyline> polylines = new ArrayList<>();
         for(Edge e : edges) {
             List<Node> nodes = e.getNodes();
             Polyline p = map.addPolyline(new PolylineOptions()
                     .add(nodes.get(0).getPosition(), nodes.get(1).getPosition())
+                    .width(POLYLINE_WIDTH)
+                    .color(POLYLINE_COLOR)
+            );
+            polylines.add(p);
+        }
+        return polylines;
+    }*/
+
+    private List<Polyline> buildPolylines(List<Node> nodes, GoogleMap map) {
+        List<Polyline> polylines = new ArrayList<>();
+        for(int i = 1; i < nodes.size(); i++) {
+            Polyline p = map.addPolyline(new PolylineOptions()
+                    .add(nodes.get(i-1).getPosition(), nodes.get(i).getPosition())
                     .width(POLYLINE_WIDTH)
                     .color(POLYLINE_COLOR)
             );
@@ -82,21 +95,21 @@ public class Graph {
         if(start == null || dest == null || map == null)
             throw new NullPointerException();
 
-        // build dijkstra package objects
-//        edu.bridgewater.csci400.mapper.dijkstra.Graph g = new edu.bridgewater.csci400.mapper.dijkstra.Graph(nodes, edges);
-//        DijkstraSP dsp = new DijkstraSP(g);
-//        dsp.execute(new Vertex(start.getId()));
-//
-//        // get path to dest
-//        LinkedList<Vertex> path = dsp.getPath(new Vertex(dest.getId()));
-//
-//        // convert path to edge list
-//        List<Edge> edgeList = new ArrayList<>();
-//        for(Vertex v : path) {
-//            edgeList.add(LocalDB.getEdge(v.getId()));
-//        }
-//        return buildPolylines(edgeList, map);
-        return buildPolylines(edges, map);
+
+        //build dijkstra package objects
+        edu.bridgewater.csci400.mapper.dijkstra.Graph g = new edu.bridgewater.csci400.mapper.dijkstra.Graph(nodes, edges);
+        DijkstraSP dsp = new DijkstraSP(g);
+        dsp.execute(new Vertex(start.getId()));
+
+        // get path to dest
+        LinkedList<Vertex> path = dsp.getPath(new Vertex(dest.getId()));
+
+        // convert path to edge list
+        List<Node> nodeList = new ArrayList<>();
+        for(Vertex v : path) {
+            nodeList.add(LocalDB.getNode(v.getId()));
+        }
+        return buildPolylines(nodeList, map);
     }
 
     public List<Polyline> getShortestPath(Node start, Destination dest, GoogleMap map) {

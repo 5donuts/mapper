@@ -26,10 +26,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.gms.maps.model.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnInfoWindowCloseListener, LocationListener {
@@ -53,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> mapMarkers;
     private Marker myLoc = null;
     private boolean showLocation = false;
+    private boolean fromLocation = false;
 
 
     @Override
@@ -152,17 +159,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onInfoWindowClick(Marker marker) {
         marker.hideInfoWindow();
         if (marker.getTag().equals(LOC)) {
-            List<Node> nodes = GRAPH.getNodes();
-            Node closestNode = nodes.get(0);
-            double minDistance = GRAPH.getDistanceBetween(closestNode.getPosition(), marker.getPosition());
-            for (Node n : nodes) {
-                double distance = GRAPH.getDistanceBetween(n.getPosition(), marker.getPosition());
-                if (distance < minDistance) {
-                    closestNode = n;
-                    minDistance = distance;
-                }
+            if (fromLocation) {
+                marker.setSnippet("Starting point");
+                showPathFromMarkers();
+            } else {
+                marker.setSnippet("Tap to start here");
             }
-            // TODO show as start marker, set closestNode as starting node for shortest path
+            fromLocation = !fromLocation;
         } else if (selection.equals(NONE) || selection.equals(DEST) && !(marker.equals(destMarker))) {
             marker.setSnippet("Starting point");
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
@@ -173,6 +176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             startMarker = marker;
             selection = START;
+            showPathFromMarkers();
         } else if (!(marker.equals(startMarker) || marker.equals(destMarker))) {
             marker.setSnippet("Destination");
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
@@ -183,7 +187,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 destMarker.setTag(NONE);
             }
             destMarker = marker;
-            // TODO use startMarker and destMarker to compute and display path
+            showPathFromMarkers();
         } else {
             if (marker.equals(startMarker) || selection.equals(DEST)) {
                 marker.setSnippet("Tap to start here");
@@ -211,6 +215,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    public void showPathFromMarkers() {
+        if ((startMarker != null || (showLocation && fromLocation)) && destMarker != null) {
+            if (showLocation && fromLocation) {
+                List<Node> nodes = GRAPH.getNodes();
+                Node closestNode = nodes.get(0);
+                double minDistance = GRAPH.getDistanceBetween(closestNode.getPosition(), myLoc.getPosition());
+                for (Node n : nodes) {
+                    double distance = GRAPH.getDistanceBetween(n.getPosition(), myLoc.getPosition());
+                    if (distance < minDistance) {
+                        closestNode = n;
+                        minDistance = distance;
+                    }
+                }
+                String end = destMarker.getTitle();
+                List<Destination> destinations = GRAPH.getDestinations();
+                Node startNode = closestNode;
+                Destination endDest = null;
+                for (int i = 0; i < destinations.size(); i++) {
+                    if (destinations.get(i).getName().equals(end))
+                        endDest = destinations.get(i);
+                }
+                //List<Polyline> path = GRAPH.getShortestPath(startNode, endDest, mMap);
+            } else {
+                String start = startMarker.getTitle();
+                String end = destMarker.getTitle();
+                List<Destination> destinations = GRAPH.getDestinations();
+                Destination startDest = null;
+                Destination endDest = null;
+                for (int i = 0; i < destinations.size(); i++) {
+                    if (destinations.get(i).getName().equals(start))
+                        startDest = destinations.get(i);
+                    if (destinations.get(i).getName().equals(end))
+                        endDest = destinations.get(i);
+                }
+                //List<Polyline> path = GRAPH.getShortestPath(startDest, endDest, mMap);
+            }
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -228,6 +271,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
         mMap.setOnInfoWindowCloseListener(this);
+
+        //Graph display code for testing//
+        /*BufferedReader reader = null;
+        try {
+            InputStreamReader is = new InputStreamReader(getAssets().open("map_data.json"));
+            reader = new BufferedReader(is);
+
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+
+            String json = out.toString();
+
+            JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+            JsonArray nodes = jsonObject.getAsJsonObject("map_data").getAsJsonArray("nodes");
+            double[] coords = new double[500];
+            for (int i = 0; i < nodes.size(); i++) {
+                Log.d("json", nodes.get(i).getAsJsonObject().get("latitude").getAsString());
+                Circle circle = mMap.addCircle(new CircleOptions()
+                        .center(new LatLng(nodes.get(i).getAsJsonObject().get("latitude").getAsDouble(), nodes.get(i).getAsJsonObject().get("longitude").getAsDouble()))
+                        .radius(2)
+                        .strokeWidth(7)
+                        .strokeColor(0xFF49C7FF)
+                        .fillColor(0xFFFFFFFF));
+                coords[2*i] = nodes.get(i).getAsJsonObject().get("latitude").getAsDouble();
+                coords[(2*i)+1] = nodes.get(i).getAsJsonObject().get("longitude").getAsDouble();
+            }
+            JsonArray edges = jsonObject.getAsJsonObject("map_data").getAsJsonArray("edges");
+            for (int i = 0; i < edges.size(); i++) {
+                Log.d("json", edges.get(i).getAsJsonObject().get("node1").getAsString());
+                int node1 = edges.get(i).getAsJsonObject().get("node1").getAsInt();
+                int node2 = edges.get(i).getAsJsonObject().get("node2").getAsInt();
+                Polyline path = mMap.addPolyline(new PolylineOptions()
+                        .add(new LatLng(coords[(node1-1)*2], coords[(node1-1)*2+1]), new LatLng(coords[(node2-1)*2], coords[(node2-1)*2+1]))
+                        .width(5)
+                        .color(0xFF49C7FF));
+            }
+        } catch (IOException e) {
+            //log the exception
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                }
+            }
+        }*/
     }
 
     public void toggleLocation(View view) {
@@ -266,6 +359,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 myLoc = mMap.addMarker(new MarkerOptions()
                         .position(position)
                         .title("My Location")
+                        .snippet("Tap to start here")
                         .zIndex(2)
                         .icon(BitmapDescriptorFactory.fromAsset("locMarker.png")));
                 myLoc.setTag(LOC);
@@ -283,6 +377,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             myLoc = mMap.addMarker(new MarkerOptions()
                     .position(position)
                     .title("My Location")
+                    .snippet("Tap to start here")
                     .zIndex(2)
                     .icon(BitmapDescriptorFactory.fromAsset("locMarker.png")));
             myLoc.setTag(LOC);

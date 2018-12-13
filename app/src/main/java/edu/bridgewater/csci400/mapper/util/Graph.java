@@ -7,6 +7,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -85,6 +86,8 @@ public class Graph {
                     .add(nodes.get(i-1).getPosition(), nodes.get(i).getPosition())
                     .width(POLYLINE_WIDTH)
                     .color(POLYLINE_COLOR)
+                    .endCap(new RoundCap())
+                    .startCap(new RoundCap())
             );
             polylines.add(p);
         }

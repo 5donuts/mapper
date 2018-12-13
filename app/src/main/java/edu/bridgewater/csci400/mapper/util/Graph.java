@@ -9,9 +9,12 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import edu.bridgewater.csci400.mapper.db.LocalDB;
+import edu.bridgewater.csci400.mapper.dijkstra.DijkstraSP;
+import edu.bridgewater.csci400.mapper.dijkstra.Vertex;
 
 public class Graph {
     private static final float POLYLINE_WIDTH = 5.0F;
@@ -79,8 +82,20 @@ public class Graph {
         if(start == null || dest == null || map == null)
             throw new NullPointerException();
 
-        // TODO implement this method
-        List<Edge> edges = new ArrayList<>();
+        // build dijkstra package objects
+//        edu.bridgewater.csci400.mapper.dijkstra.Graph g = new edu.bridgewater.csci400.mapper.dijkstra.Graph(nodes, edges);
+//        DijkstraSP dsp = new DijkstraSP(g);
+//        dsp.execute(new Vertex(start.getId()));
+//
+//        // get path to dest
+//        LinkedList<Vertex> path = dsp.getPath(new Vertex(dest.getId()));
+//
+//        // convert path to edge list
+//        List<Edge> edgeList = new ArrayList<>();
+//        for(Vertex v : path) {
+//            edgeList.add(LocalDB.getEdge(v.getId()));
+//        }
+//        return buildPolylines(edgeList, map);
         return buildPolylines(edges, map);
     }
 

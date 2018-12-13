@@ -2,7 +2,6 @@ package edu.bridgewater.csci400.mapper.util;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -10,14 +9,9 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import edu.bridgewater.csci400.mapper.db.LocalDB;
-import edu.princeton.cs.algs4.DijkstraSP;
-import edu.princeton.cs.algs4.DirectedEdge;
-import edu.princeton.cs.algs4.EdgeWeightedDigraph;
 
 public class Graph {
     private static final float POLYLINE_WIDTH = 5.0F;
@@ -27,36 +21,12 @@ public class Graph {
     private List<Edge> edges;
     private List<Destination> destinations;
 
-    private final EdgeWeightedDigraph g;
-    private DijkstraSP shortestPaths;
-    private Node prevSource;
-
-    private Map<DirectedEdge, Edge> edgeMap; // used to create polylines after calculating shortest paths
-
     public Graph(Context context) {
         // get information from database
         LocalDB.openDB(context);
         nodes = LocalDB.getNodes();
         edges = LocalDB.getEdges();
         destinations = LocalDB.getDestinations();
-
-        // build algs4 objects for Dijkstra's shortest path algorithm
-        // the graph is initialized to hold more than the number of vertices and edges to handle cases where
-        // the id of the node or edge exceeds the capacity of the data structure. (e.g., an ID of 229 on a range of 0-228)
-        edgeMap = new HashMap<>();
-        g = new EdgeWeightedDigraph(nodes.size() + (int) (nodes.size() * 0.5), edges.size() + (int) (edges.size() * 0.5));
-        for(Edge e : edges) {
-            List<Node> edgeNodes = e.getNodes();
-            DirectedEdge de = new DirectedEdge(edgeNodes.get(0).getId(), edgeNodes.get(1).getId(),
-                    e.distanceBetweenNodes());
-            g.addEdge(de);
-            edgeMap.put(de, e);
-            // database edges are undirected, so a second parallel edge must be added
-            de = new DirectedEdge(edgeNodes.get(1).getId(), edgeNodes.get(0).getId(),
-                    e.distanceBetweenNodes());
-            g.addEdge(de);
-            edgeMap.put(de, e);
-        }
     }
 
     public List<Polyline> getAllPaths(GoogleMap map){
@@ -109,21 +79,8 @@ public class Graph {
         if(start == null || dest == null || map == null)
             throw new NullPointerException();
 
-        if(shortestPaths == null || prevSource != start) {
-            prevSource = start;
-            shortestPaths = new DijkstraSP(g, start.getId());
-        }
-
-        // build the mapper Edge objects from the algs4 DirectedEdge objects
-        Iterable<DirectedEdge> spEdges = shortestPaths.pathTo(dest.getId());
+        // TODO implement this method
         List<Edge> edges = new ArrayList<>();
-        for(DirectedEdge de : spEdges) {
-            Edge e = edgeMap.get(de);
-            // TODO figure out why e is sometimes null
-            edges.add(e);
-        }
-
-        // build the polylines
         return buildPolylines(edges, map);
     }
 

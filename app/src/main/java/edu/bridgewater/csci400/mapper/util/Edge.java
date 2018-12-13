@@ -31,7 +31,7 @@ public class Edge {
         return node_1 == n || node_2 == n;
     }
 
-    public double distanceBetweenNodes() {
+    public double getWeight() {
         return node_1.distanceTo(node_2);
     }
 }

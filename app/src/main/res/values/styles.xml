@@ -7,5 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="BasicSpinner" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:background">@color/colorShade</item>
+    </style>
 
 </resources>

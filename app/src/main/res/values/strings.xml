@@ -1,4 +1,37 @@
 <resources>
     <string name="app_name">Mapper</string>
     <string name="title_activity_maps">Map</string>
+
+
+        <string name="yount_Hall"> Yount Hall</string>
+        <string name="memorial_Hall"> Memorial Hall</string>
+        <string name="flory_Hall"> Flory Hall</string>
+        <string name="carter_center"> Carter Center</string>
+        <string name="john_Kenny_Forrer_Library"> John Kenny Forrer Library</string>
+        <string name="Wright_Hall"> Wright Hall</string>
+        <string name="Heritage_Hall"> Heritage Hall</string>
+        <string name="Geisert_Hall"> Geisert Hall</string>
+        <string name="Bowman_Hall"> Bowman Hall</string>
+        <string name="McKinney_Center"> McKinney Center</string>
+        <string name="Wampler_Towers"> Wampler Towers</string>
+        <string name="Wakeman_Hall"> Wakeman Hall</string>
+        <string name="Blue_Ridge_Hall"> Blue Ridge Hall</string>
+        <string name="Daleville_Hall"> Daleville Hall</string>
+        <string name="Dillon_Hall"> Dillon Hall</string>
+        <string name="Funkhouser_Center"> Funkhouser Center</string>
+        <string name="Moomaw_Hall"> Moomaw Hall</string>
+        <string name="Kline_Campus_Center"> Kline Campus Center</string>
+        <string name="rebecca_hall"> Rebecca Hall</string>
+        <string name="Cole_Hall"> Cole Hall</string>
+        <string name="Stone_Village"> Stone Village</string>
+        <string name="Bicknell_House"> Bicknell House</string>
+        <string name="Nininger_Hall"> Nininger Hall</string>
+
+    <string name="destination">Destination:</string>
+    <string name="start">Start:</string>
+    <string name="navigate">Navigate</string>
+    <string name="locationHide">📍 Hide location</string>
+    <string name="locationShow">📍 Show location</string>
+
+
 </resources>
